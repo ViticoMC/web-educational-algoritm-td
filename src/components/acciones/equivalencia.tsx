@@ -47,7 +47,7 @@ export default function Equivalencia({ relaciones }: { relaciones: Relacion[] })
     }
 
     return (
-        <section className="flex items-center flex-col gap-2">
+        <section className="flex items-center flex-col gap-2 p-4">
             <h1 className="text-2xl">Determinar si dos conjuntos son equivalentes</h1>
             <p>Selecciona la relacion y luego sus conjuntos de DF para calcular si son equivalentes</p>
             <div className="flex flex-col justify-center items-center gap-4 ">

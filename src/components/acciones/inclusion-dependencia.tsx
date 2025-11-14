@@ -40,7 +40,7 @@ export default function InclusionDependencia({ relaciones }: { relaciones: Relac
 
 
     return (
-        <section className="flex items-center flex-col gap-2 text-center ">
+        <section className="flex items-center flex-col gap-2 text-center p-4 ">
             <h1 className="text-2xl">Determinar si a partir de un conjunto de dependencias funcionales se puede implicar cierta dependencia funcional</h1>
             <p>Selecciona la relacion ,  luego el conjunto de DF y agrega la dependencia funcional para verificar si esta inlcuida </p>
             <div className="flex gap-2">

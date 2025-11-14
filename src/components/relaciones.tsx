@@ -31,7 +31,7 @@ export default function Relaciones() {
         <Tabs className="flex flex-col md:flex-row h-auto w-full items-center md:items-start overflow-y-auto "
             onValueChange={(e) => setTabId(Number(e))}
         >
-            <Card className="flex flex-col p-2  items-start overflow-y-auto h-screen col-span-1 overflow-x-hidden">
+            <Card className="flex flex-col p-2  items-start overflow-y-auto h-auto col-span-1 overflow-x-hidden">
                 <CardTitle className="text-2xl flex items-end gap-2">
                     <Atom className="h-7 w-7" />
                     <span>Relaciones</span>

@@ -69,7 +69,7 @@ export default function ClaveCandidata({ relaciones }: { relaciones: Relacion[] 
     }
 
     return (
-        <section className='flex flex-col gap-4 items-center'>
+        <section className='flex flex-col gap-4 items-center p-4'>
             <h1 className='text-2xl text-center'>Determinar de un conjunto de atributos es clave candidata</h1>
             <p>Selecciona la relacion , el  conjuntos de DF y luego el  conjunto de atributos para determinar si es clave candidata</p>
             <div className='flex justify-center flex-col md:flex-row  gap-4 '>
