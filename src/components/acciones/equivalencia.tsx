@@ -53,7 +53,7 @@ export default function Equivalencia({ relaciones }: { relaciones: Relacion[] })
             <div className="flex flex-col justify-center items-center gap-4 ">
                 <SelectComponent value={selectedRelacion?.nombre} changue={handleSelectedRelacion} type="relacion" items={relaciones} />
                 {
-                    conjuntosDF.length === 1 && <p className="text-orange-400">Esta relacion tiene un solo conjunto de DF
+                    conjuntosDF.length === 1 && <p className="text-orange-400 text-center p-2">Esta relacion tiene un solo conjunto de DF
                         no tiene sentido calcular equivalencia entre sus conjuntos</p>
                 }
                 <div className="flex gap-2">

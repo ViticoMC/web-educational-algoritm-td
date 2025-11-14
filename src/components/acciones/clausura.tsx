@@ -125,7 +125,7 @@ export default function Clausura({ relaciones }: { relaciones: Relacion[] }) {
                         Calcular Cierre
                     </Button>
                     <div className="flex flex-col gap-2">
-                        <div className={`flex flex-col gap-2 ${clausura.length > 0 ? "" : "text-gray-400"}`}>
+                        <div className={`flex flex-col gap-2  ${clausura.length > 0 ? "" : "text-orange-400 text-center"}`}>
                             {clausura.length > 0 ? formatAtri(clausura) : "Esperando para calcular resultado"}
                         </div>
                     </div>
