@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Web Educational Algoritm TD",
+  title: "Algoritmos de Teoría de Diseño",
   description: "Creada por Victor Manuel Martinez campo",
   keywords: [
     "Base de datos ", "Teoría del Diseño ", "Dependencias Funcionales", 'Clausura ', "Conjuntos", "Relaciones"
