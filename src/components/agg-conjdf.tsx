@@ -129,12 +129,12 @@ export default function AggDF({ atributos, id, refetch, conjuntosDF }: { atribut
                 </DialogDescription>
                 <div className="flex flex-col items-center gap-4">
                     <div className="flex justify-center gap-2 items-center">
-                        <Card className="p-4 h-40">
+                        <Card className="p-2 h-40">
                             <CardTitle>Selecciona los atributos Implicantes</CardTitle>
-                            <CardContent>
+                            <CardContent className="grid grid-cols-2 p-0">
                                 {
                                     atributos.map((item, index) => (
-                                        <div key={index} className="flex gap-2">
+                                        <div key={index} className="flex gap-2 ">
                                             <Checkbox id={`${item}-1`} checked={currentDepen.implicantes.includes(item)} onCheckedChange={(e) => {
                                                 if (e) {
                                                     setCurrentDependencia({
@@ -155,9 +155,9 @@ export default function AggDF({ atributos, id, refetch, conjuntosDF }: { atribut
                                 }
                             </CardContent>
                         </Card>
-                        <Card className="p-4 h-40">
+                        <Card className="p-2 h-40">
                             <CardTitle>Selecciona los atributos implicados</CardTitle>
-                            <CardContent>
+                            <CardContent className="grid grid-cols-2 p-0">
                                 {
                                     atributos.map((item, index) => (
                                         <div key={index} className="flex gap-2">
