@@ -8,6 +8,7 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   const relaciones = await getRelaciones();
+
   return NextResponse.json(relaciones);
 }
 

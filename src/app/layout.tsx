@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { AppProviders } from "@/components/app-provider";
 import Nav from "@/components/nav";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,10 +16,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Algoritmos de Teoría de Diseño",
-  description: "Creada por Victor Manuel Martinez campo",
+  title: "DB Theory Lab - Suite Educativa",
+  description: "Analiza dependencias funcionales y normaliza relaciones a 3NF o BCNF utilizando la Suite de Algoritmos",
   keywords: [
-    "Base de datos ", "Teoría del Diseño ", "Dependencias Funcionales", 'Clausura ', "Conjuntos", "Relaciones"
+    "Base de Datos", "Teoría del Diseño", "Dependencias Funcionales", "Clausura", "Normalización", "3NF", "BCNF", "Relaciones"
   ]
 };
 
@@ -28,13 +29,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="es" suppressHydrationWarning>
+      <head>
+        <Script src="/theme-script.js" strategy="beforeInteractive" />
+      </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden `}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden bg-white dark:bg-slate-950 text-slate-900 dark:text-white transition-colors duration-300`}
       >
         <AppProviders>
-          <Nav />
-          {children}
+          <div className="flex h-screen overflow-hidden">
+            <Nav />
+            <main className="ml-64 flex-1 overflow-auto">
+              {children}
+            </main>
+          </div>
         </AppProviders>
       </body>
     </html>

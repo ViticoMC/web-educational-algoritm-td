@@ -1,9 +1,5 @@
-import Relaciones from '@/components/relaciones'
+import { redirect } from "next/navigation"
 
 export default function Page() {
-    return (
-        <main className='pb-10'>
-            <Relaciones />
-        </main>
-    )
+    redirect("/dashboard")
 }
