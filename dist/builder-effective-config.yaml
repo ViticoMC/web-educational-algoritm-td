@@ -1,0 +1,22 @@
+directories:
+  output: dist
+  buildResources: public
+appId: com.example.educativedb
+productName: Educational Database
+files:
+  - filter:
+      - electron/**/*
+      - .next/**/*
+      - public/**/*
+      - node_modules/**/*
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+electronVersion: 39.2.7

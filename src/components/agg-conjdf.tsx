@@ -111,7 +111,7 @@ export default function AggDF({ atributos, id, refetch, conjuntosDF }: { atribut
             setError("")
         }}>
             <DialogTrigger asChild>
-                <Button variant="outline" className="hover:cursor-pointer w-full absolute -bottom-12"
+                <Button variant="outline" className="hover:cursor-pointer hover:bg-accent  w-full absolute -bottom-12"
 
                 >Agregar conjunto de DF
                 </Button>
