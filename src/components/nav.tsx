@@ -14,7 +14,7 @@ export default function Nav() {
     }
 
     return (
-        <nav className="fixed left-0 top-0 h-screen w-64 bg-linear-to-b from-white via-slate-50 to-white dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 border-r border-slate-200 dark:border-slate-700 shadow-lg p-6 overflow-y-auto transition-colors duration-300">
+        <nav className="h-screen w-64 bg-linear-to-b from-white via-slate-50 to-white dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 border-r border-slate-200 dark:border-slate-700 shadow-lg p-6 overflow-y-auto transition-colors duration-300">
             {/* Header */}
             <div className="mb-8">
                 <Link href="/" className="flex items-center gap-3 mb-2">
@@ -68,6 +68,21 @@ export default function Nav() {
                 </Link>
 
                 <div className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider px-3 my-4">
+                    Documentación
+                </div>
+
+                <Link
+                    href="/docs"
+                    className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${isActive('/docs')
+                        ? 'bg-blue-600 text-white'
+                        : 'text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700'
+                        }`}
+                >
+                    <BookOpen className="h-5 w-5" />
+                    <span className="font-medium">Conferencias</span>
+                </Link>
+
+                {/* <div className="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider px-3 my-4">
                     Herramientas
                 </div>
 
@@ -91,7 +106,7 @@ export default function Nav() {
                 >
                     <Settings className="h-5 w-5" />
                     <span className="font-medium">Configuración</span>
-                </Link>
+                </Link> */}
             </div>
 
             {/* Footer */}

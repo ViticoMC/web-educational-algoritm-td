@@ -20,17 +20,16 @@ export default function Dashboard() {
             {/* Header */}
             <div className="mb-12">
                 <h1 className="text-4xl font-bold text-slate-900 dark:text-white mb-2">Bienvenido de nuevo, Estudiante</h1>
-                <p className="text-slate-600 dark:text-slate-400">Analiza dependencias funcionales y normaliza tus relaciones a 3NF o BCNF utilizando la Suite de Algoritmos.</p>
+                <p className="text-slate-600 dark:text-slate-400">Tu mejor opcion , para estudiar SBD-1</p>
             </div>
 
             {/* Stats Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
                 {/* Active Relations */}
                 <Card className="bg-gradient-to-br from-slate-50 to-white dark:from-slate-800 dark:to-slate-900 border-slate-200 dark:border-slate-700 hover:border-blue-500 transition-all">
                     <CardContent className="p-6">
                         <div className="flex items-start justify-between mb-4">
                             <Database className="h-8 w-8 text-blue-400" />
-                            <span className="text-sm font-semibold text-green-400">+2 today</span>
                         </div>
                         <h3 className="text-slate-600 dark:text-slate-400 text-sm font-medium mb-2">RELACIONES ACTIVAS</h3>
                         <p className="text-4xl font-bold text-slate-900 dark:text-white">{relaciones?.length || 0}</p>
@@ -43,7 +42,6 @@ export default function Dashboard() {
                     <CardContent className="p-6">
                         <div className="flex items-start justify-between mb-4">
                             <GitBranch className="h-8 w-8 text-cyan-400" />
-                            <span className="text-sm font-semibold text-green-400">+3 new</span>
                         </div>
                         <h3 className="text-slate-600 dark:text-slate-400 text-sm font-medium mb-2">DEPENDENCIAS FUNCIONALES</h3>
                         <p className="text-4xl font-bold text-slate-900 dark:text-white">{totalFDs}</p>
@@ -55,25 +53,9 @@ export default function Dashboard() {
                     <CardContent className="p-6">
                         <div className="flex items-start justify-between mb-4">
                             <Key className="h-8 w-8 text-purple-400" />
-                            <span className="text-sm font-semibold text-slate-600 dark:text-slate-400">No change</span>
                         </div>
                         <h3 className="text-slate-600 dark:text-slate-400 text-sm font-medium mb-2">CLAVES CANDIDATAS</h3>
                         <p className="text-4xl font-bold text-slate-900 dark:text-white">{totalCandidateKeys}</p>
-                    </CardContent>
-                </Card>
-
-                {/* Progress */}
-                <Card className="bg-gradient-to-br from-slate-50 to-white dark:from-slate-800 dark:to-slate-900 border-slate-200 dark:border-slate-700 hover:border-blue-500 transition-all">
-                    <CardContent className="p-6">
-                        <div className="flex items-start justify-between mb-4">
-                            <CheckCircle className="h-8 w-8 text-green-400" />
-                            <span className="text-sm font-semibold text-green-400">+5% pts</span>
-                        </div>
-                        <h3 className="text-slate-600 dark:text-slate-400 text-sm font-medium mb-2">PROGRESO</h3>
-                        <p className="text-4xl font-bold text-slate-900 dark:text-white">85%</p>
-                        <div className="mt-4 w-full bg-slate-200 dark:bg-slate-700 rounded-full h-2">
-                            <div className="bg-gradient-to-r from-blue-500 to-cyan-400 h-2 rounded-full" style={{ width: '85%' }}></div>
-                        </div>
                     </CardContent>
                 </Card>
             </div>

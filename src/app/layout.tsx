@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { AppProviders } from "@/components/app-provider";
-import Nav from "@/components/nav";
+import { LayoutClient } from "./layout-client";
 import Script from "next/script";
 
 const geistSans = Geist({
@@ -36,14 +35,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden bg-white dark:bg-slate-950 text-slate-900 dark:text-white transition-colors duration-300`}
       >
-        <AppProviders>
-          <div className="flex h-screen overflow-hidden">
-            <Nav />
-            <main className="ml-64 flex-1 overflow-auto">
-              {children}
-            </main>
-          </div>
-        </AppProviders>
+        <LayoutClient>
+          {children}
+        </LayoutClient>
       </body>
     </html>
   );
