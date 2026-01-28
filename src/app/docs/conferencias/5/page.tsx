@@ -2,224 +2,201 @@ import React from 'react';
 import Link from 'next/link';
 import {
     Calculator,
-    Filter,
-    LayoutList,
+    Table,
+    Divide,
+    Minus,
+    Plus,
+    X,
+    Code,
+    Sigma,
+    Pi,
     Combine,
-    Files,
-    MinusSquare,
-    ChevronRight,
-    Database,
-    Info,
-    Zap,
-    Split,
-    Table as TableIcon,
     ArrowLeft
 } from 'lucide-react';
 
-export default function BDConference5Page() {
+export default function AlgebraRelacionalPage() {
     return (
         <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-50 font-sans scroll-smooth">
-            {/* Hero Section */}
-            <header className="bg-purple-900 dark:bg-purple-950 text-white py-20 px-6 shadow-lg">
+            {/* Header con botón atrás */}
+            <header className="bg-blue-900 dark:bg-blue-950 text-white py-20 px-6 shadow-lg">
                 <div className="max-w-5xl mx-auto">
-                    <Link href="/docs" className="inline-flex items-center gap-2 text-purple-300 dark:text-purple-400 hover:text-purple-100 dark:hover:text-purple-200 transition-colors mb-6">
+                    <Link href="/docs#fundamentos-conceptual" className="inline-flex items-center gap-2 text-blue-300 dark:text-blue-400 hover:text-blue-100 dark:hover:text-blue-200 transition-colors mb-6">
                         <ArrowLeft size={20} />
                         <span className="font-medium">Volver</span>
                     </Link>
-                    <h2 className="text-purple-300 font-bold tracking-widest uppercase mb-4">Conferencia 5</h2>
-                    <h1 className="text-4xl md:text-6xl font-extrabold mb-6">
-                        Dinámica del Modelo Relacional
-                    </h1>
-                    <p className="text-2xl text-purple-100 font-light">
-                        Álgebra Relacional y Lenguajes de Consulta
-                    </p>
+                    <div className="text-center">
+                        <h1 className="text-4xl md:text-6xl font-extrabold mb-2">
+                            Conferencia 5: Dinámica del Modelo Relacional
+                        </h1>
+                        <p className="text-2xl text-blue-100 font-light">Lenguajes Relacionales y Álgebra Relacional</p>
+                    </div>
                 </div>
             </header>
 
-            <main className="max-w-5xl mx-auto px-6 py-12 space-y-20">
+            <div className="max-w-5xl mx-auto px-6 md:px-12 py-12">
 
-                {/* Sumario con Anchors */}
-                <section id="sumario">
-                    <h2 className="text-2xl font-bold border-b-4 border-purple-600 dark:border-purple-400 inline-block mb-8">Sumario Detallado</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {[
-                            { id: "lenguajes", text: "Lenguajes Relacionales (Procedimentales vs No Procedimentales)" },
-                            { id: "seleccion", text: "Operación de Selección (Condiciones y Predicados)" },
-                            { id: "proyeccion", text: "Operación de Proyección (Eliminación de Duplicados)" },
-                            { id: "conjuntos", text: "Operaciones de Conjuntos y Compatibilidad" },
-                            { id: "acople", text: "Acople Natural (Join) y Producto Cartesiano" }
-                        ].map((item, i) => (
-                            <a
-                                key={item.id}
-                                href={`#${item.id}`}
-                                className="group flex items-center justify-between bg-white dark:bg-slate-800 p-4 rounded-lg shadow-sm border-l-4 border-purple-500 dark:border-purple-400 hover:bg-purple-50 dark:hover:bg-slate-700 transition-colors"
-                            >
-                                <span className="flex items-center gap-3">
-                                    <span className="text-purple-600 dark:text-purple-400 font-bold text-lg">{i + 1}.</span>
-                                    <span className="font-medium group-hover:text-purple-700 dark:group-hover:text-purple-300">{item.text}</span>
-                                </span>
-                                <ChevronRight className="text-slate-300 group-hover:text-purple-500 transition-transform group-hover:translate-x-1" size={20} />
-                            </a>
-                        ))}
-                    </div>
-                </section>
-
-                {/* 1. Lenguajes Relacionales */}
-                <section id="lenguajes" className="scroll-mt-10 space-y-6">
-                    <h2 className="text-3xl font-bold text-slate-800 flex items-center gap-3">
-                        <Calculator className="text-purple-600" /> Lenguajes Relacionales
-                    </h2>
-                    <p className="text-slate-600 leading-relaxed">
-                        Un lenguaje de consulta es aquel en el que el usuario solicita información de la base de datos. Estos se categorizan según su nivel de abstracción:
-                    </p>
-                    <div className="grid md:grid-cols-2 gap-8">
-                        <div className="bg-white p-8 rounded-2xl shadow-md border-t-8 border-purple-600">
-                            <h3 className="text-xl font-bold mb-4 text-purple-900">Procedimentales</h3>
-                            <p className="text-sm text-slate-600 mb-4">
-                                El usuario instruye al sistema para que lleve a cabo una serie de operaciones en la base de datos para calcular el resultado deseado.
-                            </p>
-                            <div className="text-sm font-semibold text-purple-700">Ejemplo: Álgebra Relacional</div>
-                        </div>
-                        <div className="bg-white p-8 rounded-2xl shadow-md border-t-8 border-indigo-600">
-                            <h3 className="text-xl font-bold mb-4 text-indigo-900">No Procedimentales</h3>
-                            <p className="text-sm text-slate-600 mb-4">
-                                El usuario describe la información deseada sin dictar los pasos específicos para obtener esa información.
-                            </p>
-                            <div className="text-sm font-semibold text-indigo-700">Ejemplo: Cálculo Relacional</div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* 2. Selección */}
-                <section id="seleccion" className="scroll-mt-10 space-y-6">
-                    <div className="bg-slate-900 text-white p-10 rounded-3xl shadow-2xl">
-                        <h2 className="text-3xl font-bold mb-6 flex items-center gap-3 text-purple-400">
-                            <Filter /> Operación de Selección (σ)
+                {/* Tipos de Lenguajes */}
+                <section className="mb-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-sm border-t-4 border-blue-500 transition-colors duration-300">
+                        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+                            <Code className="text-blue-600 dark:text-blue-400" /> Tipos de Lenguajes
                         </h2>
                         <div className="space-y-4">
-                            <p className="text-slate-300">
-                                Selecciona tuplas que satisfacen un predicado determinado. Se utiliza una proposición lógica (fórmula) sobre los atributos de la relación.
-                            </p>
-                            <div className="bg-slate-800 p-6 rounded-xl border border-slate-700">
-                                <div className="text-purple-300 font-mono mb-2">Sintaxis: σ<sub>predicado</sub> (R)</div>
-                                <div className="text-xs text-slate-400">
-                                    Operadores permitidos: =, ≠, &lt;, ≤, &gt;, ≥, ∧ (y), ∨ (o), ¬ (no).
+                            <div className="p-4 bg-blue-50 dark:bg-blue-950 rounded-lg border border-blue-100 dark:border-blue-800 transition-colors duration-300">
+                                <h3 className="font-bold text-blue-800 dark:text-blue-300 italic underline">Procedimentales (Álgebra Relacional)</h3>
+                                <p className="text-sm text-blue-900 dark:text-blue-200">El usuario indica las operaciones que hay que realizar para obtener los resultados.</p>
+                            </div>
+                            <div className="p-4 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 transition-colors duration-300">
+                                <h3 className="font-bold text-slate-800 dark:text-slate-300 italic underline">No Procedimentales (Cálculo Relacional)</h3>
+                                <p className="text-sm text-slate-700 dark:text-slate-400">El usuario solo indica qué quiere obtener, sin especificar cómo.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="bg-blue-900 dark:bg-blue-950 text-white p-8 rounded-2xl flex flex-col justify-center shadow-xl transition-colors duration-300">
+                        <h2 className="text-2xl font-bold mb-4 uppercase tracking-tight">Definición de Álgebra Relacional</h2>
+                        <p className="text-lg opacity-95 leading-relaxed">
+                            Es un conjunto de operaciones que actúan sobre relaciones para producir nuevas relaciones.
+                            Es un lenguaje de consulta procedimental.
+                        </p>
+                    </div>
+                </section>
+
+                {/* Operaciones Monádicas */}
+                <section className="mb-16">
+                    <h2 className="text-2xl font-bold mb-8 text-blue-900 dark:text-blue-300 flex items-center gap-2 uppercase transition-colors duration-300">
+                        <Calculator /> Operaciones Monádicas (Unarias)
+                    </h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        {/* Selección */}
+                        <div className="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-md transition-colors duration-300">
+                            <div className="flex items-center justify-between mb-4">
+                                <h3 className="text-xl font-bold text-blue-700 dark:text-blue-400">Selección (σ)</h3>
+                                <span className="bg-blue-100 dark:bg-blue-950 text-blue-800 dark:text-blue-300 px-3 py-1 rounded text-xs font-mono font-bold">FILTRADO HORIZONTAL</span>
+                            </div>
+                            <p className="text-sm mb-4 text-slate-700 dark:text-slate-300">Extrae un subconjunto de tuplas que satisfacen un predicado o condición.</p>
+                            <div className="bg-slate-900 dark:bg-slate-950 text-blue-400 dark:text-blue-300 p-4 rounded font-mono text-sm border-l-4 border-blue-500 transition-colors duration-300">
+                                σ<sub>condición</sub>(Relación)
+                            </div>
+                        </div>
+
+                        {/* Proyección */}
+                        <div className="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-md transition-colors duration-300">
+                            <div className="flex items-center justify-between mb-4">
+                                <h3 className="text-xl font-bold text-blue-700 dark:text-blue-400">Proyección (π)</h3>
+                                <span className="bg-blue-100 dark:bg-blue-950 text-blue-800 dark:text-blue-300 px-3 py-1 rounded text-xs font-mono font-bold">FILTRADO VERTICAL</span>
+                            </div>
+                            <p className="text-sm mb-4 text-slate-700 dark:text-slate-300">Extrae columnas específicas y elimina automáticamente las tuplas duplicadas resultantes.</p>
+                            <div className="bg-slate-900 dark:bg-slate-950 text-blue-400 dark:text-blue-300 p-4 rounded font-mono text-sm border-l-4 border-blue-500 transition-colors duration-300">
+                                π<sub>lista_atributos</sub>(Relación)
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Operaciones de Conjunto */}
+                <section className="mb-16">
+                    <h2 className="text-2xl font-bold mb-8 text-blue-900 dark:text-blue-300 flex items-center gap-2 uppercase transition-colors duration-300">
+                        Operaciones de Conjunto
+                    </h2>
+                    <div className="bg-blue-100 dark:bg-blue-950 p-4 rounded-lg mb-8 border-l-8 border-blue-500 dark:border-blue-600 shadow-sm transition-colors duration-300">
+                        <p className="text-sm text-blue-900 dark:text-blue-200 font-bold">
+                            IMPORTANTE: Las relaciones deben ser compatibles (mismo grado y dominios compatibles).
+                        </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div className="p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-center hover:shadow-lg transition-all duration-300">
+                            <div className="text-3xl text-blue-600 dark:text-blue-400 mb-2">∪</div>
+                            <h4 className="font-bold text-lg text-slate-900 dark:text-slate-100">Unión</h4>
+                            <p className="text-xs text-slate-600 dark:text-slate-400">Tuplas que están en R, en S o en ambas.</p>
+                        </div>
+                        <div className="p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-center hover:shadow-lg transition-all duration-300">
+                            <div className="text-3xl text-blue-600 dark:text-blue-400 mb-2">∩</div>
+                            <h4 className="font-bold text-lg text-slate-900 dark:text-slate-100">Intersección</h4>
+                            <p className="text-xs text-slate-600 dark:text-slate-400">Solo tuplas presentes en R y S simultáneamente.</p>
+                        </div>
+                        <div className="p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-center hover:shadow-lg transition-all duration-300">
+                            <div className="text-3xl text-blue-600 dark:text-blue-400 mb-2">−</div>
+                            <h4 className="font-bold text-lg text-slate-900 dark:text-slate-100">Diferencia</h4>
+                            <p className="text-xs text-slate-600 dark:text-slate-400">Tuplas que están en R pero no en S.</p>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Producto Cartesiano y Join */}
+                <section className="mb-16">
+                    <h2 className="text-2xl font-bold mb-8 text-blue-900 dark:text-blue-300 flex items-center gap-2 uppercase transition-colors duration-300">
+                        Combinación de Relaciones
+                    </h2>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        {/* Producto Cartesiano */}
+                        <div className="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 transition-colors duration-300">
+                            <h3 className="text-2xl font-bold mb-4 flex items-center gap-2 text-slate-800 dark:text-slate-200">
+                                <X className="text-blue-600 dark:text-blue-400" /> Producto Cartesiano (×)
+                            </h3>
+                            <p className="text-sm text-slate-600 dark:text-slate-400 mb-6 italic">Combina todas las tuplas de R con todas las de S.</p>
+                            <div className="space-y-3">
+                                <div className="flex justify-between text-sm border-b border-slate-200 dark:border-slate-700 pb-2">
+                                    <span className="text-slate-700 dark:text-slate-300">Grado Resultante:</span>
+                                    <span className="font-mono font-bold text-blue-700 dark:text-blue-400">Grado(R) + Grado(S)</span>
+                                </div>
+                                <div className="flex justify-between text-sm border-b border-slate-200 dark:border-slate-700 pb-2">
+                                    <span className="text-slate-700 dark:text-slate-300">Cardinalidad:</span>
+                                    <span className="font-mono font-bold text-blue-700 dark:text-blue-400">Card(R) × Card(S)</span>
                                 </div>
                             </div>
-                            <p className="text-sm italic text-purple-200">
-                                Resultado: Una relación con el mismo esquema que R, pero solo con las filas que cumplen la condición.
+                        </div>
+
+                        {/* Acople Natural */}
+                        <div className="bg-blue-50 dark:bg-blue-950 p-8 rounded-2xl border border-blue-200 dark:border-blue-800 shadow-sm transition-colors duration-300">
+                            <h3 className="text-2xl font-bold mb-4 flex items-center gap-2 text-blue-900 dark:text-blue-300">
+                                <Combine className="text-blue-600 dark:text-blue-400" /> Acople Natural (⋈)
+                            </h3>
+                            <p className="text-sm mb-4 leading-relaxed text-blue-900 dark:text-blue-200">
+                                Combina relaciones mediante atributos comunes (mismo nombre y dominio). Elimina columnas repetidas.
                             </p>
-                        </div>
-                    </div>
-                </section>
-
-                {/* 3. Proyección */}
-                <section id="proyeccion" className="scroll-mt-10 space-y-6">
-                    <h2 className="text-3xl font-bold text-slate-800 flex items-center gap-3">
-                        <LayoutList className="text-purple-600" /> Operación de Proyección (π)
-                    </h2>
-                    <div className="bg-white p-8 rounded-2xl shadow-md border-l-8 border-purple-600">
-                        <p className="text-slate-600 mb-6">
-                            Permite seleccionar ciertas columnas de una relación y descartar las demás. Dado que las relaciones son conjuntos, la proyección <strong>elimina automáticamente las filas duplicadas</strong>.
-                        </p>
-                        <div className="bg-purple-50 p-6 rounded-xl border border-purple-100">
-                            <div className="text-purple-800 font-mono mb-2 text-lg text-center">π<sub>A1, A2, ..., Ak</sub> (R)</div>
-                            <p className="text-xs text-center text-purple-600 italic">Donde A1, A2 son nombres de atributos de la relación R.</p>
-                        </div>
-                    </div>
-                </section>
-
-                {/* 4. Operaciones de Conjuntos */}
-                <section id="conjuntos" className="scroll-mt-10 space-y-8">
-                    <h2 className="text-3xl font-bold text-slate-800 flex items-center gap-3">
-                        <Combine className="text-purple-600" /> Operaciones de Conjuntos
-                    </h2>
-                    <div className="bg-amber-50 border-l-4 border-amber-400 p-4 mb-6">
-                        <p className="text-sm text-amber-800 font-bold">Requisito de Compatibilidad:</p>
-                        <p className="text-xs text-amber-700">
-                            Para Unión, Intersección y Diferencia, las relaciones deben tener el mismo grado (número de atributos) y los dominios de los atributos correspondientes deben ser iguales.
-                        </p>
-                    </div>
-
-                    <div className="grid md:grid-cols-2 gap-6">
-                        <div className="p-6 bg-white rounded-xl shadow-sm border border-slate-200">
-                            <h4 className="font-bold flex items-center gap-2 mb-2"><span className="text-purple-600 text-xl">∪</span> Unión</h4>
-                            <p className="text-sm text-slate-600">Incluye todas las tuplas que están en R, en S o en ambas. Elimina duplicados.</p>
-                        </div>
-                        <div className="p-6 bg-white rounded-xl shadow-sm border border-slate-200">
-                            <h4 className="font-bold flex items-center gap-2 mb-2"><span className="text-purple-600 text-xl">-</span> Diferencia</h4>
-                            <p className="text-sm text-slate-600">Tuplas que están en R pero NO en S.</p>
-                        </div>
-                        <div className="p-6 bg-white rounded-xl shadow-sm border border-slate-200">
-                            <h4 className="font-bold flex items-center gap-2 mb-2"><span className="text-purple-600 text-xl">∩</span> Intersección</h4>
-                            <p className="text-sm text-slate-600">Tuplas que aparecen en ambas relaciones simultáneamente.</p>
-                        </div>
-                        <div className="p-6 bg-white rounded-xl shadow-sm border border-slate-200">
-                            <h4 className="font-bold flex items-center gap-2 mb-2"><span className="text-purple-600 text-xl">x</span> Producto Cartesiano</h4>
-                            <p className="text-sm text-slate-600">Combina cada tupla de R con cada tupla de S. Si R tiene <i>n</i> filas y S tiene <i>m</i>, el resultado tiene <i>n * m</i> filas.</p>
-                        </div>
-                    </div>
-                </section>
-
-                {/* 5. Acople Natural */}
-                <section id="acople" className="scroll-mt-10 space-y-8">
-                    <div className="flex items-center gap-4">
-                        <Split className="text-purple-600" size={40} />
-                        <h2 className="text-3xl font-bold text-slate-800">Acople Natural (JOIN)</h2>
-                    </div>
-
-                    <div className="bg-white p-8 rounded-2xl shadow-md border-t-8 border-purple-600">
-                        <p className="text-slate-600 mb-6">
-                            Es una operación binaria que permite combinar selecciones y productos cartesianos en una sola operación más eficiente.
-                        </p>
-                        <div className="grid md:grid-cols-2 gap-8">
-                            <div className="space-y-4">
-                                <h4 className="font-bold text-purple-800 uppercase text-xs tracking-widest">Características Clave</h4>
-                                <ul className="space-y-3 text-sm text-slate-600">
-                                    <li className="flex items-start gap-2">
-                                        <Zap size={16} className="text-purple-500 mt-1 shrink-0" />
-                                        <span>Solo considera combinaciones de tuplas que tienen el mismo valor en los atributos comunes.</span>
-                                    </li>
-                                    <li className="flex items-start gap-2">
-                                        <Zap size={16} className="text-purple-500 mt-1 shrink-0" />
-                                        <span><strong>Eliminación de duplicados:</strong> El atributo común aparece una sola vez en el resultado.</span>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div className="bg-slate-50 p-6 rounded-xl border border-dashed border-purple-300">
-                                <h4 className="font-bold text-xs text-slate-400 mb-4 uppercase">Propiedades Matemáticas</h4>
-                                <div className="space-y-2 text-xs font-mono text-purple-700">
-                                    <p>• R ⋈ S = S ⋈ R (Conmutativo)</p>
-                                    <p>• (R ⋈ S) ⋈ T = R ⋈ (S ⋈ T) (Asociativo)</p>
-                                </div>
+                            <div className="bg-white dark:bg-blue-900 p-3 rounded font-mono text-[10px] border border-blue-200 dark:border-blue-700 text-slate-900 dark:text-blue-100">
+                                Ejemplo: R(A, B, C) ⋈ S(B, D) → T(A, B, C, D)
                             </div>
                         </div>
                     </div>
                 </section>
 
-            </main>
+                {/* División */}
+                <section className="mb-16 bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm transition-colors duration-300">
+                    <div className="flex items-center gap-3 mb-6">
+                        <Divide className="text-blue-600 dark:text-blue-400" size={32} />
+                        <h2 className="text-2xl font-bold text-slate-950 dark:text-slate-100 uppercase">Operación División (÷)</h2>
+                    </div>
+                    <p className="text-slate-700 dark:text-slate-300 mb-6">
+                        Dadas R(Grado m+n) y S(Grado n), produce una relación de grado m con las tuplas de R que están asociadas con <strong>todas</strong> las tuplas de S.
+                    </p>
+                    <div className="bg-red-50 dark:bg-red-950 p-4 rounded-lg border-l-4 border-red-500 dark:border-red-600 text-xs font-bold text-red-900 dark:text-red-200 transition-colors duration-300">
+                        REGLA: Los atributos de S deben ser un subconjunto de los de R.
+                    </div>
+                </section>
 
-            {/* Bibliografía y Cierre */}
-            <footer className="bg-slate-100 py-16 px-6 mt-20 border-t border-slate-200">
-                <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-12">
-                    <div>
-                        <h3 className="font-bold text-slate-800 mb-4 flex items-center gap-2">
-                            <Database size={20} className="text-purple-600" /> Dinámica de Datos
-                        </h3>
-                        <p className="text-sm text-slate-600 leading-relaxed italic">
-                            "El álgebra relacional es la base teórica que permite entender cómo SQL procesa internamente las consultas mediante la manipulación de conjuntos."
-                        </p>
+                {/* Propiedades Finales */}
+                <footer className="mt-12 pt-8 border-t border-slate-300 dark:border-slate-700 transition-colors duration-300">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h4 className="font-black text-xs uppercase text-slate-600 dark:text-slate-400 tracking-widest mb-4">Notas Técnicas</h4>
+                            <ul className="text-xs space-y-2 text-slate-700 dark:text-slate-400">
+                                <li>• El resultado de cualquier operación es siempre una nueva relación.</li>
+                                <li>• Es obligatorio renombrar atributos si hay conflicto de nombres en operaciones de conjunto.</li>
+                                <li>• En la DIFERENCIA, la cardinalidad es ≤ a la del primer operando.</li>
+                            </ul>
+                        </div>
+                        <div className="flex items-end justify-end">
+                            <span className="bg-blue-200 dark:bg-blue-950 text-blue-900 dark:text-blue-300 px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest transition-colors duration-300">
+                                Sistemas de Bases de Datos I - 2026
+                            </span>
+                        </div>
                     </div>
-                    <div className="space-y-2">
-                        <h4 className="font-bold text-slate-400 uppercase tracking-widest text-xs mb-4 flex items-center gap-2">
-                            <Info size={14} /> Datos de la Conferencia
-                        </h4>
-                        <p className="text-xs text-slate-500 font-medium">Nombre: Dinámica del Modelo Relacional</p>
-                        <p className="text-xs text-slate-500 font-medium">Temas: Selección, Proyección, Unión, Diferencia, Producto y Join.</p>
-                        <p className="text-xs text-slate-500 font-medium">Autor: Ramiro Pérez Vázquez</p>
-                    </div>
-                </div>
-            </footer>
+                </footer>
+            </div>
         </div>
     );
 }

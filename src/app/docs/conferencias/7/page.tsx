@@ -1,189 +1,205 @@
 import React from 'react';
+import Link from 'next/link';
 import {
-    Ruler,
-    Database,
-    AlertOctagon,
-    ArrowRight,
-    Layout,
-    ChevronRight,
-    Info,
-    CheckCircle,
-    Zap,
-    Layers
+    ShieldAlert,
+    GitMerge,
+    Binary,
+    CheckCircle2,
+    AlertCircle,
+    FileJson,
+    Library,
+    ArrowDownNarrowWide,
+    ArrowLeft
 } from 'lucide-react';
 
-export default function BDConference9Page() {
+export default function TeoriaDisenoPage() {
     return (
-        <div className="min-h-screen bg-slate-50 text-slate-900 font-sans scroll-smooth">
-            {/* Hero Section */}
-            <header className="bg-rose-900 text-white py-20 px-6 shadow-lg">
+        <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-50 font-sans scroll-smooth">
+            {/* Header con botón atrás */}
+            <header className="bg-blue-900 dark:bg-blue-950 text-white py-20 px-6 shadow-lg">
                 <div className="max-w-5xl mx-auto">
-                    <h2 className="text-rose-300 font-bold tracking-widest uppercase mb-4">Conferencia 9</h2>
-                    <h1 className="text-4xl md:text-6xl font-extrabold mb-6">
-                        Teoría del Diseño
-                    </h1>
-                    <p className="text-2xl text-rose-100 font-light">
-                        Dependencias Funcionales y Normalización
-                    </p>
+                    <Link href="/docs#normalizacion-diseno" className="inline-flex items-center gap-2 text-blue-300 dark:text-blue-400 hover:text-blue-100 dark:hover:text-blue-200 transition-colors mb-6">
+                        <ArrowLeft size={20} />
+                        <span className="font-medium">Volver</span>
+                    </Link>
+                    <div className="text-center">
+                        <h1 className="text-4xl md:text-6xl font-extrabold mb-2">
+                            Conferencia 7: Teoría del Diseño
+                        </h1>
+                        <p className="text-2xl text-blue-100 font-light">Normalización de Bases de Datos Relacionales</p>
+                    </div>
                 </div>
             </header>
 
-            <main className="max-w-5xl mx-auto px-6 py-12 space-y-20">
+            <div className="max-w-5xl mx-auto px-6 md:px-12 py-12">
 
-                {/* Sumario con Anchors */}
-                <section id="sumario">
-                    <h2 className="text-2xl font-bold border-b-4 border-rose-600 inline-block mb-8">Sumario de la Conferencia</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {[
-                            { id: "introduccion", text: "Introducción al Diseño Lógico" },
-                            { id: "problemas", text: "Problemas de un Mal Diseño" },
-                            { id: "dependencias", text: "Dependencias Funcionales (DF)" },
-                            { id: "formas-normales", text: "Formas Normales (1FN, 2FN, 3FN, FNBC)" }
-                        ].map((item, i) => (
-                            <a
-                                key={item.id}
-                                href={`#${item.id}`}
-                                className="group flex items-center justify-between bg-white p-4 rounded-lg shadow-sm border-l-4 border-rose-500 hover:bg-rose-50 transition-colors"
-                            >
-                                <span className="flex items-center gap-3">
-                                    <span className="text-rose-600 font-bold text-lg">{i + 1}.</span>
-                                    <span className="font-medium group-hover:text-rose-700">{item.text}</span>
-                                </span>
-                                <ChevronRight className="text-slate-300 group-hover:text-rose-500 transition-transform group-hover:translate-x-1" size={20} />
-                            </a>
-                        ))}
-                    </div>
-                </section>
-
-                {/* 1. ¿Qué es la Teoría del Diseño? */}
-                <section id="introduccion" className="scroll-mt-10 space-y-6">
-                    <h2 className="text-3xl font-bold text-slate-800 flex items-center gap-3">
-                        <Ruler className="text-rose-600" /> Introducción
-                    </h2>
-                    <div className="bg-white p-8 rounded-2xl shadow-md border-t-8 border-rose-600">
-                        <p className="text-slate-700 leading-relaxed mb-6 font-medium">
-                            Es una técnica formal para organizar los datos dentro de un esquema relacional.
+                {/* ¿Qué es la Teoría del Diseño? */}
+                <section className="mb-12">
+                    <div className="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 transition-colors duration-300">
+                        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-blue-800 dark:text-blue-400">
+                            <Library size={28} /> Introducción
+                        </h2>
+                        <p className="text-lg leading-relaxed">
+                            Es una técnica formal para organizar los datos. Su objetivo principal es obtener un esquema relacional que minimice la redundancia y evite anomalías.
                         </p>
-                        <div className="bg-slate-50 p-6 rounded-xl border border-slate-200">
-                            <h4 className="font-bold text-rose-800 mb-2">Caso de Estudio: Suministradores</h4>
-                            <p className="text-sm text-slate-600 italic">
-                                Relación: Suministrador(s#, nombreS, ciudad, status, p#, producto, precio)
-                            </p>
-                            <p className="text-xs mt-2 text-slate-500">
-                                Donde el status se establece de acuerdo a la ciudad del suministrador.
-                            </p>
-                        </div>
                     </div>
                 </section>
 
-                {/* 2. Problemas de un mal diseño */}
-                <section id="problemas" className="scroll-mt-10 space-y-6">
-                    <h2 className="text-3xl font-bold text-slate-800 flex items-center gap-3">
-                        <AlertOctagon className="text-rose-600" /> Anomalías de Diseño
+                {/* Problemas de un mal diseño */}
+                <section className="mb-12">
+                    <h2 className="text-2xl font-bold mb-6 flex items-center gap-2 text-blue-800 dark:text-blue-400 uppercase transition-colors duration-300">
+                        <ShieldAlert /> Problemas de un Mal Diseño
                     </h2>
-                    <div className="grid md:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                         {[
-                            { title: "Redundancia", desc: "Repetición innecesaria de datos (ej. repetir nombre y ciudad por cada producto)." },
-                            { title: "Inconsistencia Potencial", desc: "Riesgo de actualizar un dato en una fila pero no en otras donde está repetido." },
-                            { title: "Anomalía de Inserción", desc: "No poder insertar una ciudad/status si aún no hay productos suministrados." },
-                            { title: "Anomalía de Eliminación", desc: "Al borrar el último producto de un suministrador, se pierde la información de su ubicación." }
-                        ].map((prob, idx) => (
-                            <div key={idx} className="p-4 bg-rose-50 border border-rose-100 rounded-lg">
-                                <h4 className="font-bold text-rose-900 text-sm mb-1">{prob.title}</h4>
-                                <p className="text-xs text-rose-700">{prob.desc}</p>
+                            { title: "Redundancia", desc: "Repetición innecesaria de datos (ej. Juan vive en VC varias veces)." },
+                            { title: "Inconsistencia", desc: "Riesgo de tener datos contradictorios por actualizaciones parciales." },
+                            { title: "Anomalía de Inserción", desc: "No poder añadir datos si falta una parte de la clave (ej. Ciudad sin suministrador)." },
+                            { title: "Anomalía de Borrado", desc: "Perder información valiosa al eliminar un registro (ej. Borrar el único producto borra la ciudad)." }
+                        ].map((item, idx) => (
+                            <div key={idx} className="p-4 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 rounded-xl transition-colors duration-300">
+                                <h4 className="font-bold text-blue-900 dark:text-blue-300 mb-1">{item.title}</h4>
+                                <p className="text-xs text-blue-700 dark:text-blue-400">{item.desc}</p>
                             </div>
                         ))}
                     </div>
                 </section>
 
-                {/* 3. Dependencias Funcionales */}
-                <section id="dependencias" className="scroll-mt-10 space-y-6">
-                    <h2 className="text-3xl font-bold text-slate-800 flex items-center gap-3">
-                        <Zap className="text-rose-600" /> Dependencias Funcionales (DF)
+                {/* Dependencias Funcionales */}
+                {/* Sección Actualizada de Dependencias Funcionales */}
+                <section className="mb-16">
+                    <h2 className="text-2xl font-bold mb-6 flex items-center gap-2 text-blue-900 dark:text-blue-300 uppercase transition-colors duration-300">
+                        <GitMerge /> Dependencias Funcionales (DF)
                     </h2>
-                    <div className="bg-slate-900 text-white p-8 rounded-2xl shadow-xl">
-                        <p className="text-rose-300 font-bold mb-4 italic">"Vínculo muchos a uno que va de un conjunto de atributos a otro en una relación."</p>
-                        <div className="bg-slate-800 p-6 rounded-xl border border-slate-700 font-mono text-center text-xl">
-                            X → Y
+                    <div className="bg-blue-900 dark:bg-blue-950 text-white p-8 rounded-3xl shadow-lg transition-colors duration-300">
+                        <p className="italic mb-6 text-blue-100 dark:text-blue-200">"Es un vínculo muchos a uno que va de un conjunto de atributos a otro en una relación." — C. J. Date</p>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            {/* Clasificación por Contenido */}
+                            <div className="bg-blue-800 dark:bg-blue-950 p-5 rounded-xl border border-blue-700 dark:border-blue-800 transition-colors duration-300">
+                                <h3 className="text-blue-300 dark:text-blue-400 font-bold mb-3 uppercase text-xs tracking-widest">Según su naturaleza</h3>
+                                <ul className="space-y-4 text-sm">
+                                    <li>
+                                        <strong className="text-white block underline">DF Trivial</strong>
+                                        <p className="text-blue-100 dark:text-blue-200 opacity-80">
+                                            Ocurre cuando el lado derecho es un subconjunto del lado izquierdo. Siempre se cumple por definición.
+                                        </p>
+                                        <code className="block mt-1 text-xs bg-slate-900 dark:bg-slate-950 p-1 rounded font-mono text-blue-400 dark:text-blue-300">Si Y ⊆ X, entonces X → Y</code>
+                                    </li>
+                                    <li>
+                                        <strong className="text-white block underline">DF No Trivial</strong>
+                                        <p className="text-blue-100 dark:text-blue-200 opacity-80">
+                                            Cuando el lado derecho NO está contenido en el izquierdo. Son las que aportan información real al diseño.
+                                        </p>
+                                        <code className="block mt-1 text-xs bg-slate-900 dark:bg-slate-950 p-1 rounded font-mono text-blue-400 dark:text-blue-300">X → Y donde Y ⊈ X</code>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            {/* Clasificación por Estructura */}
+                            <div className="bg-blue-800 dark:bg-blue-950 p-5 rounded-xl border border-blue-700 dark:border-blue-800 transition-colors duration-300">
+                                <h3 className="text-blue-300 dark:text-blue-400 font-bold mb-3 uppercase text-xs tracking-widest">Según su jerarquía</h3>
+                                <ul className="space-y-4 text-sm">
+                                    <li>
+                                        <strong className="text-white block underline">DF Plena (Completa)</strong>
+                                        <p className="text-blue-100 dark:text-blue-200 opacity-80">
+                                            Y depende de X, pero no de ninguna parte de X. Es vital para la 2FN.
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <strong className="text-white block underline">DF Transitiva</strong>
+                                        <p className="text-blue-100 dark:text-blue-200 opacity-80">
+                                            Si X → Y y Y → Z (donde Y no → X), entonces X → Z. Es el foco de la 3FN.
+                                        </p>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                        <p className="mt-4 text-sm text-slate-400">
-                            Si dos tuplas coinciden en los valores de X, deben coincidir en los valores de Y.
-                        </p>
-                        <div className="mt-6 space-y-2">
-                            <h4 className="text-xs uppercase tracking-widest text-slate-500">Ejemplos del caso:</h4>
-                            <ul className="text-sm space-y-1">
-                                <li className="flex items-center gap-2"><ArrowRight size={14} className="text-rose-500" /> s# → nombreS, ciudad</li>
-                                <li className="flex items-center gap-2"><ArrowRight size={14} className="text-rose-500" /> ciudad → status</li>
-                                <li className="flex items-center gap-2"><ArrowRight size={14} className="text-rose-500" /> s#, p# → precio</li>
-                            </ul>
+
+                        {/* Nota sobre Determinantes */}
+                        <div className="mt-6 p-4 bg-slate-900 dark:bg-slate-950 rounded-lg border-l-4 border-blue-400 dark:border-blue-300 transition-colors duration-300">
+                            <p className="text-xs text-blue-100 dark:text-blue-200">
+                                <strong>Determinante:</strong> Se denomina así al conjunto de atributos del lado izquierdo (X) de una dependencia funcional.
+                            </p>
                         </div>
                     </div>
                 </section>
 
-                {/* 4. Formas Normales */}
-                <section id="formas-normales" className="scroll-mt-10 space-y-10">
-                    <h2 className="text-3xl font-bold text-slate-800 flex items-center gap-3">
-                        <Layers className="text-rose-600" /> Proceso de Normalización
+                {/* Formas Normales */}
+                <section className="mb-16">
+                    <h2 className="text-2xl font-bold mb-8 flex items-center gap-2 text-blue-900 dark:text-blue-300 uppercase tracking-widest transition-colors duration-300">
+                        <ArrowDownNarrowWide /> Formas Normales (FN)
                     </h2>
 
-                    <div className="space-y-6">
+                    <div className="space-y-10">
                         {/* 1FN */}
-                        <div className="bg-white p-6 rounded-xl shadow-sm border-l-8 border-rose-300">
-                            <h3 className="font-bold text-xl mb-2">1FN: Primera Forma Normal</h3>
-                            <p className="text-sm text-slate-600 italic mb-3">"Los dominios de los atributos deben ser atómicos (valores simples)."</p>
-                            <div className="text-xs text-rose-600 font-bold">Estado: Cumplido por definición en el modelo relacional básico.</div>
+                        <div className="relative pl-8 border-l-4 border-blue-300 dark:border-blue-600 transition-colors duration-300">
+                            <span className="absolute -left-4 top-0 bg-blue-600 dark:bg-blue-500 text-white w-7 h-7 rounded-full flex items-center justify-center font-bold transition-colors duration-300">1</span>
+                            <h3 className="text-xl font-bold text-blue-800 dark:text-blue-400">Primera Forma Normal (1FN)</h3>
+                            <p className="text-sm text-slate-700 dark:text-slate-300 mb-2">Una relación está en 1FN si y solo si todos los dominios contienen únicamente valores atómicos (indivisibles).</p>
                         </div>
 
                         {/* 2FN */}
-                        <div className="bg-white p-6 rounded-xl shadow-sm border-l-8 border-rose-400">
-                            <h3 className="font-bold text-xl mb-2">2FN: Segunda Forma Normal</h3>
-                            <p className="text-sm text-slate-600 mb-3">Está en 1FN y cada atributo que no es parte de la llave depende de <strong>forma completa</strong> de la llave primaria.</p>
-                            <div className="bg-rose-50 p-3 rounded text-xs text-rose-800">
-                                <strong>Elimina:</strong> Dependencias parciales (donde un atributo depende solo de una parte de una llave compuesta).
+                        <div className="relative pl-8 border-l-4 border-blue-400 dark:border-blue-600 transition-colors duration-300">
+                            <span className="absolute -left-4 top-0 bg-blue-500 dark:bg-blue-500 text-white w-7 h-7 rounded-full flex items-center justify-center font-bold transition-colors duration-300">2</span>
+                            <h3 className="text-xl font-bold text-blue-800 dark:text-blue-400">Segunda Forma Normal (2FN)</h3>
+                            <p className="text-sm text-slate-700 dark:text-slate-300 mb-4">Está en 1FN y cada atributo que no es parte de la clave tiene dependencia funcional <strong>plena</strong> respecto a la clave primaria.</p>
+                            <div className="bg-blue-50 dark:bg-blue-950 p-4 rounded-lg border border-blue-200 dark:border-blue-800 text-xs italic text-blue-900 dark:text-blue-300 transition-colors duration-300">
+                                <strong>Ejemplo de corrección:</strong> Si (S#, P#) → Precio y S# → Ciudad, la relación se descompone para eliminar la dependencia parcial de Ciudad respecto a solo una parte de la llave.
                             </div>
                         </div>
 
                         {/* 3FN */}
-                        <div className="bg-white p-6 rounded-xl shadow-sm border-l-8 border-rose-500">
-                            <h3 className="font-bold text-xl mb-2">3FN: Tercera Forma Normal</h3>
-                            <p className="text-sm text-slate-600 mb-3">Está en 2FN y los atributos que no forman parte de la llave proporcionan información <strong>solo acerca de la llave</strong>.</p>
-                            <div className="bg-rose-50 p-3 rounded text-xs text-rose-800">
-                                <strong>Elimina:</strong> Dependencias transitivas (ej. ciudad → status, cuando la llave es s#).
+                        <div className="relative pl-8 border-l-4 border-blue-500 dark:border-blue-600 transition-colors duration-300">
+                            <span className="absolute -left-4 top-0 bg-blue-600 dark:bg-blue-500 text-white w-7 h-7 rounded-full flex items-center justify-center font-bold transition-colors duration-300">3</span>
+                            <h3 className="text-xl font-bold text-blue-800 dark:text-blue-400">Tercera Forma Normal (3FN)</h3>
+                            <p className="text-sm text-slate-700 dark:text-slate-300 mb-4">Está en 2FN y no existen dependencias <strong>transitivas</strong> de los atributos no clave respecto a la clave primaria.</p>
+                            <div className="p-4 bg-blue-50 dark:bg-blue-950 rounded-lg border border-blue-200 dark:border-blue-800 flex gap-4 transition-colors duration-300">
+                                <AlertCircle className="text-blue-600 dark:text-blue-400 shrink-0" />
+                                <p className="text-xs text-blue-800 dark:text-blue-300">No debe haber atributos "no llave" que dependan de otros atributos "no llave" (ej. Ciudad → Status).</p>
                             </div>
                         </div>
 
                         {/* FNBC */}
-                        <div className="bg-white p-6 rounded-xl shadow-sm border-l-8 border-rose-600">
-                            <h3 className="font-bold text-xl mb-2">FNBC: Forma Normal de Boyce-Codd</h3>
-                            <p className="text-sm text-slate-600 mb-3">"Una relación está en FNBC si y solo si todo <strong>determinante</strong> es una clave candidata."</p>
+                        <div className="relative pl-8 border-l-4 border-blue-600 dark:border-blue-500 transition-colors duration-300">
+                            <span className="absolute -left-4 top-0 bg-blue-700 dark:bg-blue-500 text-white w-7 h-7 rounded-full flex items-center justify-center font-bold transition-colors duration-300">B</span>
+                            <h3 className="text-xl font-bold text-blue-800 dark:text-blue-400">Forma Normal de Boyce-Codd (FNBC)</h3>
+                            <p className="text-sm text-slate-700 dark:text-slate-300 mb-4">Propuesta en 1974. Una relación está en FNBC si y solo si todo <strong>determinante</strong> es una clave candidata.</p>
+                            <div className="bg-blue-50 dark:bg-blue-950 p-4 rounded-lg text-xs font-mono text-blue-900 dark:text-blue-300 border border-blue-200 dark:border-blue-800 transition-colors duration-300">
+                                "Cualquier atributo del cual dependan funcionalmente otros debe ser necesariamente una llave."
+                            </div>
                         </div>
                     </div>
-
-
                 </section>
 
-            </main>
-
-            {/* Footer */}
-            <footer className="bg-slate-100 py-16 px-6 mt-20 border-t border-slate-200">
-                <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-                    <div>
-                        <h3 className="font-bold text-slate-800 mb-2 flex items-center gap-2">
-                            <Database size={20} className="text-rose-600" /> Teoría del Diseño Relacional
-                        </h3>
-                        <div className="text-xs text-slate-500 space-y-1">
-                            <p>Historial de Formas Normales:</p>
-                            <p>• 1FN, 2FN, 3FN: Codd (Primer modelo)</p>
-                            <p>• FNBC: Boyce/Codd (1974)</p>
-                            <p>• 4FN y 5FN: Fagin (1977-1979)</p>
+                {/* Línea del Tiempo y Resumen */}
+                <section className="mb-16">
+                    <div className="bg-slate-900 dark:bg-slate-950 p-8 rounded-3xl text-white transition-colors duration-300">
+                        <h2 className="text-xl font-bold mb-6 flex items-center gap-2">
+                            <Binary className="text-blue-400 dark:text-blue-300" /> Cronología de Normalización
+                        </h2>
+                        <div className="flex flex-wrap gap-4 text-[10px] uppercase tracking-widest font-bold">
+                            <div className="px-3 py-1 bg-slate-800 dark:bg-slate-800 rounded text-slate-100 dark:text-slate-200">1FN, 2FN, 3FN (Codd, 1970)</div>
+                            <div className="px-3 py-1 bg-slate-800 dark:bg-slate-800 rounded text-blue-400 dark:text-blue-300">FNBC (Boyce/Codd, 1974)</div>
+                            <div className="px-3 py-1 bg-slate-800 dark:bg-slate-800 rounded text-slate-100 dark:text-slate-200">4FN (Fagin, 1977)</div>
+                            <div className="px-3 py-1 bg-slate-800 dark:bg-slate-800 rounded text-slate-100 dark:text-slate-200">5FN (Fagin, 1979)</div>
                         </div>
                     </div>
-                    <div className="text-right">
-                        <h4 className="font-bold text-slate-400 uppercase tracking-widest text-xs mb-2">Bibliografía</h4>
-                        <p className="text-xs text-slate-500">C. J. Date - Introducción a los Sistemas de Bases de Datos</p>
+                </section>
+
+                {/* Bibliografía */}
+                <footer className="mt-12 pt-8 border-t border-slate-300 dark:border-slate-700 transition-colors duration-300">
+                    <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+                        <div className="text-xs text-slate-600 dark:text-slate-400 italic">
+                            Conferencia 7: Teoría del Diseño | Basado en C. J. Date y E. F. Codd.
+                        </div>
+                        <div className="bg-blue-100 dark:bg-blue-950 text-blue-800 dark:text-blue-300 text-[10px] px-3 py-1 rounded-full font-bold uppercase transition-colors duration-300">
+                            Sistemas de Bases de Datos I
+                        </div>
                     </div>
-                </div>
-            </footer>
+                </footer>
+
+            </div>
         </div>
     );
 }

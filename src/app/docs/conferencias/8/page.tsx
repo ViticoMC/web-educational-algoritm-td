@@ -1,172 +1,228 @@
 import React from 'react';
+import Link from 'next/link';
 import {
-    Dna,
+    Calculator,
     Binary,
-    CheckCircle,
-    ListChecks,
-    Database,
-    ChevronRight,
-    FunctionSquare,
+    CheckCircle2,
+    ArrowRightLeft,
+    ListTree,
+    ShieldCheck,
+    Layers,
+    Code,
+    AlertTriangle,
     Zap,
-    RefreshCcw
+    ArrowLeft
 } from 'lucide-react';
 
-export default function BDConference7Page() {
+export default function Conferencia8Completa() {
     return (
-        <div className="min-h-screen bg-slate-50 text-slate-900 font-sans scroll-smooth">
-            {/* Hero Section */}
-            <header className="bg-blue-900 text-white py-20 px-6 shadow-lg">
-                <div className="max-w-5xl mx-auto">
-                    <h2 className="text-blue-300 font-bold tracking-widest uppercase mb-4">Conferencia 7</h2>
-                    <h1 className="text-4xl md:text-6xl font-extrabold mb-6">
-                        Clausura de Descriptores
-                    </h1>
-                    <p className="text-2xl text-blue-100 font-light">
-                        Axiomas de Armstrong y Algoritmos de Dependencias Funcionales
-                    </p>
+        <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-50 font-sans scroll-smooth">
+            {/* Header con botón atrás */}
+            <header className="bg-blue-900 dark:bg-blue-950 text-white py-20 px-6 shadow-lg">
+                <div className="max-w-6xl mx-auto">
+                    <Link href="/docs#normalizacion-diseno" className="inline-flex items-center gap-2 text-blue-300 dark:text-blue-400 hover:text-blue-100 dark:hover:text-blue-200 transition-colors mb-6">
+                        <ArrowLeft size={20} />
+                        <span className="font-medium">Volver</span>
+                    </Link>
+                    <div className="text-center">
+                        <h1 className="text-4xl md:text-6xl font-extrabold mb-2">
+                            Conferencia 8: Propiedades de las DF
+                        </h1>
+                        <p className="text-2xl text-blue-100 font-light">Clausura, Equivalencia y Cubrimiento Minimal</p>
+                    </div>
                 </div>
             </header>
 
-            <main className="max-w-5xl mx-auto px-6 py-12 space-y-20">
+            <div className="max-w-6xl mx-auto px-6 md:px-12 py-12">
 
-                {/* Sumario */}
-                <section id="sumario">
-                    <h2 className="text-2xl font-bold border-b-4 border-blue-600 inline-block mb-8">Sumario</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        {[
-                            { id: "axiomas", text: "Axiomas de Armstrong y Reglas de Inferencia" },
-                            { id: "clausura-f", text: "Clausura de un Conjunto de DFs (F+)" },
-                            { id: "clausura-x", text: "Clausura de un Conjunto de Atributos (X+)" },
-                            { id: "algoritmo", text: "Algoritmo de Cálculo y Aplicaciones" },
-                            { id: "minimal", text: "Conjunto Irreducible o Minimal" }
-                        ].map((item, i) => (
-                            <a
-                                key={item.id}
-                                href={`#${item.id}`}
-                                className="group flex items-center justify-between bg-white p-4 rounded-lg shadow-sm border-l-4 border-blue-500 hover:bg-blue-50 transition-colors"
-                            >
-                                <span className="flex items-center gap-3">
-                                    <span className="text-blue-600 font-bold text-lg">{i + 1}.</span>
-                                    <span className="font-medium group-hover:text-blue-700">{item.text}</span>
-                                </span>
-                                <ChevronRight className="text-slate-300 group-hover:text-blue-500 transition-transform group-hover:translate-x-1" size={20} />
-                            </a>
-                        ))}
+                {/* 1. DETERMINACIÓN DEL CIERRE O CLAUSURA */}
+                <section className="mb-16">
+                    <h2 className="text-2xl font-bold mb-6 flex items-center gap-2 text-blue-900 dark:text-blue-300 border-l-4 border-blue-600 dark:border-blue-500 pl-4 transition-colors duration-300">
+                        <Calculator /> 1. Clausura de un Conjunto de Atributos (X⁺)
+                    </h2>
+
+                    <div className="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 transition-colors duration-300">
+                        <p className="mb-6 text-slate-700 dark:text-slate-300 leading-relaxed">
+                            La clausura de un descriptor <span className="font-bold">X</span> respecto a un conjunto de dependencias <span className="font-bold">F</span> es el conjunto de todos los atributos que dependen funcionalmente de X según las reglas de inferencia.
+                        </p>
+
+                        {/* Algoritmo de Clausura */}
+                        <div className="bg-slate-900 dark:bg-slate-950 text-blue-400 dark:text-blue-300 p-6 rounded-xl font-mono text-sm mb-8 shadow-inner transition-colors duration-300">
+                            <h4 className="text-slate-400 dark:text-slate-500 mb-4 border-b border-slate-700 dark:border-slate-600 pb-2 uppercase text-xs">Algoritmo de Jeffrey D. Ullman</h4>
+                            <p>Entrada: Un conjunto de DFs <span className="text-white">F</span> y un conjunto de atributos <span className="text-white">X</span>.</p>
+                            <p className="mt-2">1. <span className="text-blue-300 dark:text-blue-400">Resultado</span> := X;</p>
+                            <p>2. <span className="text-blue-300 dark:text-blue-400">Repetir</span> hasta que no haya cambios:</p>
+                            <p className="ml-4">Por cada DF (<span className="text-white">A → B</span>) en F:</p>
+                            <p className="ml-8">Si (<span className="text-white">A ⊆ Resultado</span>) entonces:</p>
+                            <p className="ml-12 text-white">Resultado := Resultado ∪ B;</p>
+                            <p>3. <span className="text-blue-300 dark:text-blue-400">Retornar</span> Resultado;</p>
+                        </div>
+
+                        {/* Ejemplo Práctico de Clausura */}
+                        <div className="bg-blue-50 dark:bg-blue-950 p-6 rounded-xl border border-blue-200 dark:border-blue-800 transition-colors duration-300">
+                            <h3 className="font-bold text-blue-900 dark:text-blue-300 mb-4 flex items-center gap-2 text-lg">
+                                <Zap size={20} /> Ejemplo de Aplicación (X⁺)
+                            </h3>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+                                <div>
+                                    <p className="font-bold mb-2 text-blue-800 dark:text-blue-400">Dados:</p>
+                                    <ul className="font-mono bg-white dark:bg-slate-800 p-3 rounded border border-blue-200 dark:border-blue-700 text-slate-900 dark:text-slate-100 transition-colors duration-300">
+                                        <li>R(A, B, C, D, E, H)</li>
+                                        <li>F = {'{ A → B, BC → D, E → C, D → A }'}</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <p className="font-bold mb-2 text-blue-800 dark:text-blue-400">Problema: Calcular (AE)⁺</p>
+                                    <div className="space-y-1 italic text-slate-600 dark:text-slate-400">
+                                        <p>• Inicio: <span className="font-mono">AE</span></p>
+                                        <p>• A → B: A está en AE, sumamos B → <span className="font-mono">AEB</span></p>
+                                        <p>• E → C: E está en AEB, sumamos C → <span className="font-mono">AEBC</span></p>
+                                        <p>• BC → D: BC está en AEBC, sumamos D → <span className="font-mono">AEBCD</span></p>
+                                        <p className="text-blue-700 dark:text-blue-400 font-bold mt-2">Resultado Final: (AE)⁺ = {'{A, B, C, D, E}'}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </section>
 
-                {/* 1. Axiomas de Armstrong */}
-                <section id="axiomas" className="scroll-mt-10 space-y-6">
-                    <h2 className="text-3xl font-bold text-slate-800 flex items-center gap-3">
-                        <Binary className="text-blue-600" /> Axiomas de Armstrong
+                {/* 2. EQUIVALENCIA ENTRE CONJUNTOS DE DFs */}
+                <section className="mb-16">
+                    <h2 className="text-2xl font-bold mb-6 flex items-center gap-2 text-blue-900 dark:text-blue-300 border-l-4 border-blue-600 dark:border-blue-500 pl-4 transition-colors duration-300">
+                        <ArrowRightLeft /> 2. Equivalencia y Recubrimiento
                     </h2>
-                    <p className="text-slate-600">
-                        Reglas de inferencia para obtener nuevas dependencias a partir de un conjunto F:
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div className="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm transition-colors duration-300">
+                            <h3 className="font-bold text-lg mb-4 text-blue-800 dark:text-blue-400">Prueba de Recubrimiento (F cubre a G)</h3>
+                            <p className="text-sm mb-4 text-slate-700 dark:text-slate-300">Un conjunto F cubre a G si todas las dependencias de G pueden inferirse de F.</p>
+                            <div className="p-4 bg-slate-50 dark:bg-slate-800 rounded-lg border-l-4 border-blue-500 dark:border-blue-600 transition-colors duration-300">
+                                <p className="text-xs font-bold mb-2 uppercase text-slate-900 dark:text-slate-100">Procedimiento:</p>
+                                <p className="text-xs text-slate-700 dark:text-slate-300">Para cada <span className="font-mono">X → Y</span> en G, calcula <span className="font-mono">X⁺</span> usando las DFs de F. Si <span className="font-mono">Y ⊆ X⁺</span>, la DF está cubierta.</p>
+                            </div>
+                        </div>
+
+                        <div className="bg-blue-900 dark:bg-blue-950 text-white p-6 rounded-xl shadow-lg transition-colors duration-300">
+                            <h3 className="font-bold text-lg mb-4 flex items-center gap-2">
+                                <ShieldCheck className="text-blue-300 dark:text-blue-400" /> Equivalencia (F ≡ G)
+                            </h3>
+                            <p className="text-sm mb-4 text-blue-100 dark:text-blue-200">Dos conjuntos son idénticos en su poder de restricción si se cubren mutuamente:</p>
+                            <div className="flex flex-col items-center justify-center p-4 bg-blue-800 dark:bg-blue-950 rounded-lg">
+                                <span className="text-2xl font-black">F ⊇ G  &  G ⊇ F</span>
+                                <span className="text-[10px] mt-2 uppercase tracking-widest text-blue-300 dark:text-blue-400">Ambos conjuntos son equivalentes</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* 3. CUBRIMIENTO MINIMAL O IRREDUCIBLE */}
+                <section className="mb-16">
+                    <h2 className="text-2xl font-bold mb-8 flex items-center gap-2 text-blue-900 dark:text-blue-300 border-l-4 border-blue-600 dark:border-blue-500 pl-4 transition-colors duration-300">
+                        <Layers /> 3. Algoritmo de Cubrimiento Minimal
+                    </h2>
+
+                    <div className="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 transition-colors duration-300">
+                        <p className="text-sm mb-8 bg-blue-50 dark:bg-blue-950 p-4 border border-blue-200 dark:border-blue-800 rounded-lg text-blue-900 dark:text-blue-300 transition-colors duration-300">
+                            Un conjunto es **minimal** si no tiene dependencias redundantes, ni atributos extraños a la izquierda, y cada lado derecho es un atributo único.
+                        </p>
+
+                        <div className="space-y-12">
+                            {/* PASO 1 */}
+                            <div className="relative">
+                                <div className="flex items-center gap-4 mb-4">
+                                    <span className="bg-blue-600 dark:bg-blue-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold shadow-md transition-colors duration-300">1</span>
+                                    <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100">Lado Derecho Atómico</h3>
+                                </div>
+                                <p className="text-sm ml-12 text-slate-700 dark:text-slate-300">Descomponer cada <span className="font-mono">X → {'{A, B, C}'}</span> en <span className="font-mono">X → A, X → B, X → C</span>.</p>
+                            </div>
+
+                            {/* PASO 2 */}
+                            <div className="relative">
+                                <div className="flex items-center gap-4 mb-4">
+                                    <span className="bg-blue-600 dark:bg-blue-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold shadow-md transition-colors duration-300">2</span>
+                                    <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100">Eliminar Atributos Extraños (Lado Izquierdo)</h3>
+                                </div>
+                                <div className="ml-12 text-sm text-slate-700 dark:text-slate-300">
+                                    <p className="mb-2">Para una DF <span className="font-mono">XY → A</span>, verificar si <span className="font-mono">X → A</span> ya es suficiente.</p>
+                                    <div className="bg-slate-50 dark:bg-slate-800 p-3 rounded border border-slate-200 dark:border-slate-700 text-xs italic text-slate-600 dark:text-slate-400 transition-colors duration-300">
+                                        Prueba: Calcular <span className="font-mono">X⁺</span> usando F. Si <span className="font-mono">A ∈ X⁺</span>, entonces Y es extraño y se elimina.
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* PASO 3 */}
+                            <div className="relative">
+                                <div className="flex items-center gap-4 mb-4">
+                                    <span className="bg-blue-600 dark:bg-blue-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold shadow-md transition-colors duration-300">3</span>
+                                    <h3 className="text-lg font-bold text-slate-900 dark:text-slate-100">Eliminar Dependencias Redundantes</h3>
+                                </div>
+                                <div className="ml-12 text-sm text-slate-700 dark:text-slate-300">
+                                    <p className="mb-2">Para cada DF <span className="font-mono">X → A</span>, ver si puede obtenerse mediante las demás DFs del conjunto.</p>
+                                    <div className="bg-slate-50 dark:bg-slate-800 p-3 rounded border border-slate-200 dark:border-slate-700 text-xs italic text-slate-600 dark:text-slate-400 transition-colors duration-300">
+                                        Prueba: Sea <span className="font-mono">G = F - {'{X → A}'}</span>. Calcular <span className="font-mono">X⁺</span> usando G. Si <span className="font-mono">A ∈ X⁺</span>, la DF <span className="font-mono">X → A</span> es redundante y se elimina.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Ejemplo Completo Final */}
+                        <div className="mt-12 bg-slate-900 dark:bg-slate-950 rounded-3xl p-8 text-white relative overflow-hidden transition-colors duration-300">
+                            <div className="absolute top-0 right-0 p-4 opacity-10">
+                                <Code size={120} />
+                            </div>
+                            <h3 className="text-xl font-bold mb-6 flex items-center gap-2 text-blue-400 dark:text-blue-300">
+                                <Binary /> Resolución de Caso Completo
+                            </h3>
+                            <div className="space-y-6 text-sm">
+                                <div>
+                                    <p className="text-blue-300 dark:text-blue-400 font-bold mb-2">Original:</p>
+                                    <p className="font-mono">F = {'{ A → B, B → A, B → C, A → C, C → A }'}</p>
+                                </div>
+                                <div className="border-l-2 border-blue-500 dark:border-blue-400 pl-4 space-y-4">
+                                    <p><strong>Análisis de Redundancia:</strong></p>
+                                    <p>¿Es <span className="text-blue-400 dark:text-blue-300 font-mono text-base">A → C</span> redundante?</p>
+                                    <p>Probamos <span className="font-mono italic">A⁺</span> sin esa dependencia usando: {'{ A → B, B → A, B → C, C → A }'}</p>
+                                    <ul className="ml-4 space-y-1 text-slate-400 dark:text-slate-500">
+                                        <li>• A → B (incluye B)</li>
+                                        <li>• B → C (incluye C)</li>
+                                        <li>• Resultado: <span className="text-blue-400 dark:text-blue-300">A⁺ = {`{A, B, C}`}</span></li>
+                                    </ul>
+                                    <p className="bg-blue-800 dark:bg-blue-950 p-2 rounded text-blue-100 dark:text-blue-200">
+                                        Como <span className="font-bold">C</span> ya está en <span className="font-mono">A⁺</span>, la dependencia <span className="text-red-400 dark:text-red-300">A → C es redundante</span> y se elimina.
+                                    </p>
+                                </div>
+                                <div>
+                                    <p className="text-blue-400 dark:text-blue-300 font-bold mb-2 uppercase tracking-tighter">Cubrimiento Minimal Final:</p>
+                                    <p className="font-mono text-lg">F_min = {'{ A → B, B → A, B → C, C → A }'}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* CONCLUSIONES TÉCNICAS */}
+                <footer className="mt-16 pt-8 border-t border-slate-300 dark:border-slate-700 transition-colors duration-300">
+                    <h3 className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-6">Importancia de la Conferencia 8</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div className="p-4 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 transition-colors duration-300">
+                            <h4 className="text-sm font-bold text-slate-900 dark:text-slate-100 mb-2">Diseño Lógico</h4>
+                            <p className="text-[11px] text-slate-600 dark:text-slate-400">Permite simplificar esquemas antes de aplicar Normalización (2FN, 3FN).</p>
+                        </div>
+                        <div className="p-4 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 transition-colors duration-300">
+                            <h4 className="text-sm font-bold text-slate-900 dark:text-slate-100 mb-2">Optimización</h4>
+                            <p className="text-[11px] text-slate-600 dark:text-slate-400">Elimina redundancias físicas y lógicas que ralentizan el SBD.</p>
+                        </div>
+                        <div className="p-4 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 transition-colors duration-300">
+                            <h4 className="text-sm font-bold text-slate-900 dark:text-slate-100 mb-2">Teoría de Llaves</h4>
+                            <p className="text-[11px] text-slate-600 dark:text-slate-400">El cálculo de X⁺ es el método formal para demostrar que un descriptor es Clave Candidata.</p>
+                        </div>
+                    </div>
+                    <p className="text-center mt-12 text-[10px] text-slate-400 dark:text-slate-500 uppercase transition-colors duration-300">
+                        SBD I - 2026 - Conferencia 8 Completa (Algoritmos y Propiedades)
                     </p>
-                    <div className="grid md:grid-cols-2 gap-6">
-                        <div className="bg-white p-6 rounded-xl shadow-md border-t-4 border-blue-600">
-                            <h4 className="font-bold text-blue-900 mb-4 italic">Reglas Básicas</h4>
-                            <ul className="space-y-4 text-sm">
-                                <li><strong>Reflexividad:</strong> Si Y &sube; X, entonces X &rarr; Y</li>
-                                <li><strong>Aumento:</strong> Si X &rarr; Y, entonces XZ &rarr; YZ</li>
-                                <li><strong>Transitividad:</strong> Si X &rarr; Y y Y &rarr; Z, entonces X &rarr; Z</li>
-                            </ul>
-                        </div>
-                        <div className="bg-white p-6 rounded-xl shadow-md border-t-4 border-indigo-500">
-                            <h4 className="font-bold text-indigo-900 mb-4 italic">Reglas Derivadas</h4>
-                            <ul className="space-y-4 text-sm">
-                                <li><strong>Unión:</strong> Si X &rarr; Y y X &rarr; Z, entonces X &rarr; YZ</li>
-                                <li><strong>Descomposición:</strong> Si X &rarr; YZ, entonces X &rarr; Y y X &rarr; Z</li>
-                                <li><strong>Pseudotransitividad:</strong> Si X &rarr; Y y WY &rarr; Z, entonces WX &rarr; Z</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
+                </footer>
 
-                {/* 2. Clausura de F */}
-                <section id="clausura-f" className="scroll-mt-10">
-                    <div className="bg-slate-900 text-white p-10 rounded-3xl shadow-2xl">
-                        <h2 className="text-3xl font-bold mb-6 flex items-center gap-3 text-blue-400">
-                            <FunctionSquare /> Clausura del Conjunto F<sup>+</sup>
-                        </h2>
-                        <p className="text-slate-300 mb-6">
-                            Es el conjunto de todas las dependencias funcionales que pueden inferirse de F.
-                        </p>
-                        <div className="bg-slate-800 p-6 rounded-xl border border-slate-700">
-                            <p className="text-sm text-blue-200">
-                                Se denota como <strong>F<sup>+</sup></strong>. Su cálculo es de orden exponencial, por lo que es preferible usar la clausura de atributos.
-                            </p>
-                        </div>
-                    </div>
-                </section>
-
-                {/* 3. Clausura de Atributos */}
-                <section id="clausura-x" className="scroll-mt-10 space-y-6">
-                    <h2 className="text-3xl font-bold text-slate-800 flex items-center gap-3">
-                        <Dna className="text-blue-600" /> Clausura de Atributos X<sup>+</sup>
-                    </h2>
-                    <div className="bg-white p-8 rounded-2xl shadow-md border-l-8 border-blue-600">
-                        <p className="text-slate-700 leading-relaxed mb-4">
-                            Sea X un conjunto de atributos. El cierre <strong>X<sup>+</sup></strong> es el conjunto de atributos A tales que la dependencia X &rarr; A puede ser inferida de F.
-                        </p>
-                        <div className="flex items-center gap-2 text-blue-700 font-bold bg-blue-50 p-4 rounded-lg">
-                            <Zap size={20} />
-                            <span>Permite verificar si X es llave: Si X<sup>+</sup> contiene todos los atributos de la relación.</span>
-                        </div>
-                    </div>
-                </section>
-
-                {/* 4. Algoritmo */}
-                <section id="algoritmo" className="scroll-mt-10 space-y-8">
-                    <h2 className="text-3xl font-bold text-slate-800 flex items-center gap-3">
-                        <RefreshCcw className="text-blue-600" /> Algoritmo de Cálculo
-                    </h2>
-                    <div className="bg-slate-50 p-8 rounded-2xl border border-slate-200 font-mono text-sm">
-                        <p className="text-blue-800 font-bold mb-2">Pasos para hallar X<sup>+</sup>:</p>
-                        <div className="space-y-2">
-                            <p>1. Inicializar: RESULTADO = X</p>
-                            <p>2. Repetir hasta que no haya cambios:</p>
-                            <p className="pl-6">Por cada dependencia Y &rarr; Z en F:</p>
-                            <p className="pl-12">Si Y &sube; RESULTADO, entonces RESULTADO = RESULTADO &cup; Z</p>
-                            <p>3. Retornar X<sup>+</sup> = RESULTADO</p>
-                        </div>
-                    </div>
-                </section>
-
-                {/* 5. Conjunto Minimal */}
-                <section id="minimal" className="scroll-mt-10 space-y-8">
-                    <h2 className="text-3xl font-bold text-slate-800 flex items-center gap-3">
-                        <ListChecks className="text-blue-600" /> Conjunto Irreducible (Minimal)
-                    </h2>
-                    <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
-                        <ul className="space-y-4 text-sm text-slate-600">
-                            <li className="flex items-start gap-3">
-                                <CheckCircle className="text-green-500 mt-1 shrink-0" size={18} />
-                                <span>Cada lado derecho de las dependencias funcionales posee un <strong>atributo único</strong>.</span>
-                            </li>
-                            <li className="flex items-start gap-3">
-                                <CheckCircle className="text-green-500 mt-1 shrink-0" size={18} />
-                                <span>No existen dependencias funcionales <strong>redundantes</strong> en el conjunto.</span>
-                            </li>
-                            <li className="flex items-start gap-3">
-                                <CheckCircle className="text-green-500 mt-1 shrink-0" size={18} />
-                                <span>No existen <strong>atributos extraños</strong> en los lados izquierdos de las dependencias.</span>
-                            </li>
-                        </ul>
-                    </div>
-                </section>
-
-            </main>
-
-            {/* Footer */}
-            <footer className="bg-slate-100 py-12 px-6 mt-20 border-t border-slate-200">
-                <div className="max-w-5xl mx-auto flex justify-between items-center text-xs text-slate-500 uppercase tracking-widest">
-                    <div className="flex items-center gap-2">
-                        <Database size={16} /> Sistemas de Bases de Datos I
-                    </div>
-                    <div>Conferencia 7 Finalizada</div>
-                </div>
-            </footer>
+            </div>
         </div>
     );
 }

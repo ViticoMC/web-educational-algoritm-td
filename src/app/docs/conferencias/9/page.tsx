@@ -1,189 +1,198 @@
 import React from 'react';
+import Link from 'next/link';
 import {
-    Dna,
-    Binary,
+    Library,
+    Unlink2,
+    DatabaseZap,
+    TableProperties,
     CheckCircle,
-    ListChecks,
-    Database,
-    ChevronRight,
-    FunctionSquare,
-    Zap,
-    RefreshCcw,
-    PlayCircle,
-    Layers
+    AlertTriangle,
+    FileCode,
+    Combine,
+    SearchCode,
+    AlertCircle,
+    ArrowLeft
 } from 'lucide-react';
 
-export default function BDConference7CompletePage() {
+export default function DescomposicionRelacionesPage() {
     return (
-        <div className="min-h-screen bg-slate-50 text-slate-900 font-sans scroll-smooth">
-            {/* Hero Section */}
-            <header className="bg-blue-900 text-white py-20 px-6 shadow-lg">
-                <div className="max-w-5xl mx-auto">
-                    <h2 className="text-blue-300 font-bold tracking-widest uppercase mb-4">Conferencia 7: Guía Práctica</h2>
-                    <h1 className="text-4xl md:text-6xl font-extrabold mb-6">
-                        Algoritmos de Clausura y Cubrimiento
-                    </h1>
-                    <p className="text-2xl text-blue-100 font-light">
-                        Axiomas de Armstrong y Optimización de Dependencias
-                    </p>
+        <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-50 font-sans scroll-smooth">
+            {/* Header con botón atrás */}
+            <header className="bg-blue-900 dark:bg-blue-950 text-white py-20 px-6 shadow-lg">
+                <div className="max-w-6xl mx-auto">
+                    <Link href="/docs#normalizacion-diseno" className="inline-flex items-center gap-2 text-blue-300 dark:text-blue-400 hover:text-blue-100 dark:hover:text-blue-200 transition-colors mb-6">
+                        <ArrowLeft size={20} />
+                        <span className="font-medium">Volver</span>
+                    </Link>
+                    <div className="text-center">
+                        <h1 className="text-4xl md:text-6xl font-extrabold mb-2">
+                            Conferencia 9: Descomposición de Relaciones
+                        </h1>
+                        <p className="text-2xl text-blue-100 font-light">Propiedades de un Diseño Lógico Correcto</p>
+                    </div>
                 </div>
             </header>
 
-            <main className="max-w-5xl mx-auto px-6 py-12 space-y-24">
+            <div className="max-w-6xl mx-auto px-6 md:px-12 py-12">
 
-                {/* 1. Axiomas Rápidos */}
-                <section id="axiomas" className="scroll-mt-10 space-y-6">
-                    <h2 className="text-3xl font-bold text-slate-800 flex items-center gap-3">
-                        <Binary className="text-blue-600" /> Reglas de Inferencia
+                {/* Concepto de Descomposición */}
+                <section className="mb-12">
+                    <div className="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 transition-colors duration-300">
+                        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2 text-blue-800 dark:text-blue-400">
+                            <TableProperties size={28} /> ¿Qué es la Descomposición?
+                        </h2>
+                        <p className="text-lg leading-relaxed mb-6 text-slate-700 dark:text-slate-300">
+                            Es el proceso de sustituir una relación <span className="font-bold">R</span> por un conjunto de relaciones <span className="font-bold">{"{R1, R2, ..., Rn}"}</span> tales que cada <span className="font-italic">Ri</span> es una proyección de <span className="font-italic">R</span> y la unión de sus atributos forma el esquema original.
+                        </p>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="bg-blue-50 dark:bg-blue-950 p-4 rounded-xl border border-blue-200 dark:border-blue-800 transition-colors duration-300">
+                                <h4 className="font-bold text-blue-900 dark:text-blue-300 text-sm mb-2 uppercase">Propiedad Obligatoria 1</h4>
+                                <p className="text-xs text-blue-800 dark:text-blue-400">Acople sin pérdida de información (Lossless Join).</p>
+                            </div>
+                            <div className="bg-blue-50 dark:bg-blue-950 p-4 rounded-xl border border-blue-200 dark:border-blue-800 transition-colors duration-300">
+                                <h4 className="font-bold text-blue-900 dark:text-blue-300 text-sm mb-2 uppercase">Propiedad Obligatoria 2</h4>
+                                <p className="text-xs text-blue-800 dark:text-blue-400">Preservación de las Dependencias Funcionales.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* 1. Acople sin Pérdida de Información */}
+                <section className="mb-16">
+                    <h2 className="text-2xl font-bold mb-6 flex items-center gap-2 text-slate-900 dark:text-slate-100 border-l-4 border-blue-600 dark:border-blue-500 pl-4 uppercase transition-colors duration-300">
+                        <Combine /> 1. Acople sin Pérdida (Lossless Join)
                     </h2>
-                    <div className="grid md:grid-cols-3 gap-4">
-                        <div className="p-4 bg-white rounded-xl shadow-sm border border-slate-200">
-                            <span className="text-xs font-bold text-blue-600 uppercase">Reflexividad</span>
-                            <p className="text-sm font-mono mt-2">Si Y ⊆ X → X → Y</p>
-                        </div>
-                        <div className="p-4 bg-white rounded-xl shadow-sm border border-slate-200">
-                            <span className="text-xs font-bold text-blue-600 uppercase">Aumento</span>
-                            <p className="text-sm font-mono mt-2">Si X → Y → XZ → YZ</p>
-                        </div>
-                        <div className="p-4 bg-white rounded-xl shadow-sm border border-slate-200">
-                            <span className="text-xs font-bold text-blue-600 uppercase">Transitividad</span>
-                            <p className="text-sm font-mono mt-2">X → Y, Y → Z → X → Z</p>
-                        </div>
-                    </div>
-                </section>
 
-                {/* 2. EJEMPLO PASO A PASO: CIERRE DE ATRIBUTOS */}
-                <section id="ejemplo-cierre" className="scroll-mt-10 space-y-8">
-                    <div className="flex items-center gap-3">
-                        <div className="bg-blue-600 p-2 rounded-lg text-white">
-                            <PlayCircle size={24} />
-                        </div>
-                        <h2 className="text-3xl font-bold text-slate-800">Ejemplo: Cálculo de X<sup>+</sup></h2>
-                    </div>
+                    <div className="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 transition-colors duration-300">
+                        <p className="mb-6 text-sm text-slate-700 dark:text-slate-300">
+                            Garantiza que al realizar el <span className="font-mono font-bold italic">Natural Join</span> de las relaciones descompuestas, obtengamos exactamente las mismas tuplas de la relación original, sin generar "tuplas espurias".
+                        </p>
 
-                    <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-200">
-                        <div className="bg-slate-800 p-6 text-white">
-                            <p className="text-sm text-slate-400 mb-2 italic">Caso de estudio:</p>
-                            <p className="font-mono">Relación R(A, B, C, D, E)</p>
-                            <p className="font-mono text-blue-400">F = {'{ A → B, B → C, D → E }'}</p>
-                            <p className="mt-4 font-bold text-lg">Objetivo: Hallar A<sup>+</sup></p>
+                        <h3 className="text-lg font-bold mb-4 text-blue-800 dark:text-blue-400">Algoritmo de Prueba (Matriz de Aho)</h3>
+                        <div className="bg-slate-900 dark:bg-slate-950 text-blue-400 dark:text-blue-300 p-6 rounded-xl font-mono text-xs mb-8 transition-colors duration-300">
+                            <p className="text-slate-400 dark:text-slate-500 mb-2">// Procedimiento:</p>
+                            <p>1. Crear matriz S con filas (relaciones Ri) y columnas (atributos Aj).</p>
+                            <p>2. Si Aj ∈ Ri, poner a(j). Si no, poner b(i,j).</p>
+                            <p>3. Por cada DF (X → Y) en F:</p>
+                            <p className="ml-4">Si filas tienen valores iguales en columnas de X, igualar sus valores en columnas de Y.</p>
+                            <p className="ml-4">(Priorizar 'a' sobre 'b').</p>
+                            <p>4. Éxito si una fila queda llena totalmente con valores 'a'.</p>
                         </div>
 
-                        <div className="p-8 space-y-6 text-slate-700">
-                            <div className="flex gap-4">
-                                <div className="font-bold text-blue-600">Paso 1</div>
-                                <div>
-                                    <p className="font-bold">Inicialización</p>
-                                    <p className="text-sm">X<sup>+</sup> = {'{ A }'} (Empezamos con el atributo dado).</p>
-                                </div>
-                            </div>
-
-                            <div className="flex gap-4">
-                                <div className="font-bold text-blue-600">Paso 2</div>
-                                <div>
-                                    <p className="font-bold">Primera Iteración</p>
-                                    <p className="text-sm italic">Revisamos F:</p>
-                                    <ul className="text-sm mt-2 list-disc ml-4 space-y-1">
-                                        <li>¿A → B? <span className="text-green-600 font-bold">SÍ</span>. Como A ⊆ {'{A}'}, agregamos B.</li>
-                                        <li>X<sup>+</sup> = {'{ A, B }'}</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div className="flex gap-4">
-                                <div className="font-bold text-blue-600">Paso 3</div>
-                                <div>
-                                    <p className="font-bold">Segunda Iteración</p>
-                                    <p className="text-sm italic">Revisamos F con el nuevo conjunto:</p>
-                                    <ul className="text-sm mt-2 list-disc ml-4 space-y-1">
-                                        <li>¿B → C? <span className="text-green-600 font-bold">SÍ</span>. Como B ⊆ {'{A, B}'}, agregamos C.</li>
-                                        <li>¿D → E? <span className="text-red-600 font-bold">NO</span>. D no está en {'{A, B, C}'}.</li>
-                                        <li>X<sup>+</sup> = {'{ A, B, C }'}</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div className="bg-blue-50 p-4 rounded-xl border border-blue-100">
-                                <p className="text-sm font-bold text-blue-800">Resultado Final: A<sup>+</sup> = {'{ A, B, C }'}</p>
-                                <p className="text-xs text-blue-600 mt-1">Conclusión: A no es llave porque no conoce a D ni a E.</p>
-                            </div>
+                        {/* Ejemplo Matriz */}
+                        <div className="bg-slate-50 dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 transition-colors duration-300">
+                            <h4 className="font-bold text-sm mb-4 text-slate-900 dark:text-slate-100">Ejemplo de Resolución:</h4>
+                            <p className="text-xs mb-4 text-slate-700 dark:text-slate-300">R(A, B, C), F={" {A → B} "}, Descomposición: R1(A,B), R2(A,C)</p>
+                            <table className="w-full text-xs text-center border-collapse bg-white dark:bg-slate-900 transition-colors duration-300">
+                                <thead>
+                                    <tr className="bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-slate-100">
+                                        <th className="border border-slate-300 dark:border-slate-600 p-2">Relación</th>
+                                        <th className="border border-slate-300 dark:border-slate-600 p-2">A</th>
+                                        <th className="border border-slate-300 dark:border-slate-600 p-2">B</th>
+                                        <th className="border border-slate-300 dark:border-slate-600 p-2">C</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr className="text-slate-900 dark:text-slate-100">
+                                        <td className="border border-slate-300 dark:border-slate-600 p-2 font-bold italic">R1(A,B)</td>
+                                        <td className="border border-slate-300 dark:border-slate-600 p-2">a1</td>
+                                        <td className="border border-slate-300 dark:border-slate-600 p-2">a2</td>
+                                        <td className="border border-slate-300 dark:border-slate-600 p-2 text-slate-400 dark:text-slate-500">b1,3</td>
+                                    </tr>
+                                    <tr className="text-slate-900 dark:text-slate-100">
+                                        <td className="border border-slate-300 dark:border-slate-600 p-2 font-bold italic">R2(A,C)</td>
+                                        <td className="border border-slate-300 dark:border-slate-600 p-2">a1</td>
+                                        <td className="border border-slate-300 dark:border-slate-600 p-2 text-blue-600 dark:text-blue-400 font-bold">a2 (por A→B)</td>
+                                        <td className="border border-slate-300 dark:border-slate-600 p-2">a3</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p className="mt-4 text-[11px] text-blue-700 dark:text-blue-400 font-bold">
+                                ✓ ÉXITO: La fila de R1 ahora tiene a1 y a2 (y eventualmente a3 si aplicamos otra DF).
+                            </p>
                         </div>
                     </div>
                 </section>
 
-                {/* 3. EJEMPLO PASO A PASO: CUBRIMIENTO MINIMAL */}
-                <section id="ejemplo-minimal" className="scroll-mt-10 space-y-8">
-                    <div className="flex items-center gap-3">
-                        <div className="bg-indigo-600 p-2 rounded-lg text-white">
-                            <Layers size={24} />
-                        </div>
-                        <h2 className="text-3xl font-bold text-slate-800">Ejemplo: Cubrimiento Minimal</h2>
-                    </div>
+                {/* 2. Preservación de Dependencias */}
+                <section className="mb-16">
+                    <h2 className="text-2xl font-bold mb-6 flex items-center gap-2 text-slate-900 dark:text-slate-100 border-l-4 border-blue-600 dark:border-blue-500 pl-4 uppercase transition-colors duration-300">
+                        <DatabaseZap /> 2. Preservación de Dependencias
+                    </h2>
 
-                    <div className="bg-slate-50 border-2 border-dashed border-slate-300 rounded-2xl p-8 space-y-8">
-                        <div className="bg-white p-4 rounded-lg shadow-sm border border-slate-200">
-                            <p className="text-xs font-bold text-slate-500 uppercase">Conjunto Inicial F:</p>
-                            <p className="font-mono text-sm mt-1">F = {'{ A → BC, B → C, A → B, AB → C }'}</p>
-                        </div>
+                    <div className="bg-white dark:bg-slate-900 p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 transition-colors duration-300">
+                        <p className="text-sm mb-6 leading-relaxed text-slate-700 dark:text-slate-300">
+                            Una descomposión preserva las dependencias si el cierre del conjunto de dependencias locales (de cada Ri) es equivalente al cierre del conjunto original F.
+                        </p>
 
-                        {/* Fase A */}
-                        <div className="space-y-3">
-                            <h4 className="font-bold text-indigo-700 flex items-center gap-2">
-                                <span className="bg-indigo-100 text-indigo-700 w-6 h-6 rounded-full flex items-center justify-center text-xs">A</span>
-                                Descomposición de Lados Derechos
+                        <div className="bg-blue-900 dark:bg-blue-950 text-white p-6 rounded-xl transition-colors duration-300">
+                            <h4 className="text-blue-300 dark:text-blue-400 font-bold mb-3 flex items-center gap-2">
+                                <SearchCode size={18} /> Algoritmo de Verificación (X → Y)
                             </h4>
-                            <p className="text-sm text-slate-600">Separamos los atributos resultantes:</p>
-                            <div className="bg-white p-3 rounded border border-slate-200 font-mono text-xs">
-                                1. A → B, 2. A → C, 3. B → C, 4. A → B (Repetida), 5. AB → C
+                            <div className="space-y-3 font-mono text-xs">
+                                <p>1. Z := X;</p>
+                                <p>2. Mientras haya cambios:</p>
+                                <p className="ml-4">Por cada relación Ri:</p>
+                                <p className="ml-8">Z := Z ∪ ((Z ∩ Ri)⁺ ∩ Ri)</p>
+                                <p>3. Si Y ⊆ Z, la dependencia se preserva.</p>
                             </div>
                         </div>
 
-                        {/* Fase B */}
-                        <div className="space-y-3">
-                            <h4 className="font-bold text-indigo-700 flex items-center gap-2">
-                                <span className="bg-indigo-100 text-indigo-700 w-6 h-6 rounded-full flex items-center justify-center text-xs">B</span>
-                                Eliminar Atributos Extraños (Lado Izquierdo)
+                        <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 rounded-lg transition-colors duration-300">
+                            <h4 className="text-blue-800 dark:text-blue-300 font-bold text-xs flex items-center gap-2">
+                                <AlertCircle size={14} /> Nota Crítica
                             </h4>
-                            <p className="text-sm text-slate-600">Analizamos AB → C. ¿Es B extraño?</p>
-                            <ul className="text-xs bg-indigo-50 p-4 rounded-lg space-y-2">
-                                <li>1. Calculamos A<sup>+</sup> (sin B) usando las otras reglas.</li>
-                                <li>2. A<sup>+</sup> = {'{ A, B, C }'}.</li>
-                                <li>3. <span className="font-bold">Resultado:</span> Como C ya sale del cierre de A, B es extraño. La regla se vuelve A → C.</li>
-                            </ul>
-                        </div>
-
-                        {/* Fase C */}
-                        <div className="space-y-3">
-                            <h4 className="font-bold text-indigo-700 flex items-center gap-2">
-                                <span className="bg-indigo-100 text-indigo-700 w-6 h-6 rounded-full flex items-center justify-center text-xs">C</span>
-                                Eliminar Dependencias Redundantes
-                            </h4>
-                            <p className="text-sm text-slate-600">¿Es A → C redundante?</p>
-                            <ul className="text-xs bg-white p-4 rounded-lg border border-slate-200 space-y-2">
-                                <li>1. Usamos el resto: {'{ A → B, B → C }'}.</li>
-                                <li>2. Calculamos A<sup>+</sup> = {'{ A, B, C }'}.</li>
-                                <li>3. <span className="font-bold text-green-600">¡SÍ!</span> Se puede borrar A → C porque se infiere de las otras.</li>
-                            </ul>
-                        </div>
-
-                        <div className="bg-indigo-600 text-white p-6 rounded-xl text-center">
-                            <p className="text-xs uppercase tracking-widest opacity-80 mb-1">Resultado Final (Minimal)</p>
-                            <p className="text-xl font-mono font-bold">E = {'{ A → B, B → C }'}</p>
+                            <p className="text-[11px] text-blue-700 dark:text-blue-400">
+                                Si una descomposión no preserva dependencias, para verificar las restricciones originales se requerirían operaciones de Join costosas en cada actualización.
+                            </p>
                         </div>
                     </div>
                 </section>
 
-            </main>
-
-            {/* Footer */}
-            <footer className="bg-slate-100 py-12 px-6 mt-20 border-t border-slate-200">
-                <div className="max-w-5xl mx-auto flex justify-between items-center text-xs text-slate-500">
-                    <div className="flex items-center gap-2 uppercase tracking-tighter">
-                        <Database size={16} /> Base de Datos I - Conferencia 7 (Final)
+                {/* Teorema de Descomposición en 2 relaciones */}
+                <section className="mb-16">
+                    <div className="flex items-center gap-3 mb-6">
+                        <Unlink2 className="text-blue-600 dark:text-blue-400 transition-colors duration-300" size={32} />
+                        <h2 className="text-3xl font-bold text-slate-900 dark:text-slate-100">Teorema Especial (Binary)</h2>
                     </div>
-                    <p>Beatriz Ramiro Pérez</p>
-                </div>
-            </footer>
+                    <div className="bg-white dark:bg-slate-900 p-8 rounded-xl shadow-md border border-slate-200 dark:border-slate-700 transition-colors duration-300">
+                        <p className="mb-4 text-slate-700 dark:text-slate-300">Para una descomposición en solo dos relaciones <span className="font-bold">{"{R1, R2}"}</span>, el acople es sin pérdida si y solo si la intersección de sus atributos es llave de al menos una de ellas:</p>
+                        <div className="flex flex-col gap-2 font-mono text-sm bg-slate-900 dark:bg-slate-950 p-4 rounded border border-slate-700 dark:border-slate-600 text-blue-400 dark:text-blue-300 text-center transition-colors duration-300">
+                            <p>(R1 ∩ R2) → (R1 - R2)</p>
+                            <p className="text-slate-500 dark:text-slate-400">O BIEN</p>
+                            <p>(R1 ∩ R2) → (R2 - R1)</p>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Resumen Final */}
+                <footer className="mt-20 pt-12 border-t-2 border-slate-200 dark:border-slate-700 transition-colors duration-300">
+                    <h3 className="text-xl font-bold mb-6 uppercase tracking-widest text-slate-600 dark:text-slate-400 flex items-center gap-2 transition-colors duration-300">
+                        <CheckCircle className="text-blue-600 dark:text-blue-400" /> Criterio de Calidad
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm">
+                        <div className="p-6 bg-slate-900 dark:bg-slate-950 text-slate-300 dark:text-slate-400 rounded-2xl transition-colors duration-300">
+                            <p className="italic">
+                                "Un buen diseño relacional debe ser una descomposión que garantice simultáneamente el acople sin pérdida y la preservación de dependencias."
+                            </p>
+                        </div>
+                        <div className="space-y-2">
+                            <div className="flex items-center gap-2 text-xs text-slate-700 dark:text-slate-300">
+                                <FileCode size={16} className="text-blue-600 dark:text-blue-400" />
+                                <span>Basado en el Teorema de Jeffrey D. Ullman</span>
+                            </div>
+                            <div className="flex items-center gap-2 text-xs text-slate-700 dark:text-slate-300">
+                                <Library size={16} className="text-blue-600 dark:text-blue-400" />
+                                <span>Referencia: Elmasri & Navathe, Cap. 10</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p className="text-center mt-12 text-slate-500 dark:text-slate-400 text-[10px] uppercase tracking-widest transition-colors duration-300">
+                        Sistemas de Bases de Datos I — Conferencia 9 — Beatriz López Porrero
+                    </p>
+                </footer>
+
+            </div>
         </div>
     );
 }
