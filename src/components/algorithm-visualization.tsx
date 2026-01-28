@@ -17,7 +17,7 @@ interface AlgorithmVisualizationProps {
     description: string
     inputConfig: React.ReactNode
     onExecute: () => Promise<ExecutionStep[]>
-    result: React.ReactNode
+    renderResult: () => React.ReactNode
     loading?: boolean
 }
 
@@ -26,7 +26,7 @@ export function AlgorithmVisualization({
     description,
     inputConfig,
     onExecute,
-    result,
+    renderResult,
     loading = false,
 }: AlgorithmVisualizationProps) {
     const [steps, setSteps] = useState<ExecutionStep[]>([])
@@ -101,10 +101,12 @@ export function AlgorithmVisualization({
         }
     }
 
+    console.log("renderResult ->", renderResult)
+
     return (
-        <div className="h-screen flex flex-col gap-4 p-4 overflow-hidden">
+        <div className="min-h-screen flex flex-col gap-4 p-4">
             {/* Header with Title */}
-            <div className="flex items-center gap-2 mb-2">
+            <div className="flex items-center gap-2 mb-2 shrink-0">
                 <div className="text-2xl">⚙️</div>
                 <div>
                     <h1 className="text-2xl font-bold text-cyan-400">{title}</h1>
@@ -116,16 +118,16 @@ export function AlgorithmVisualization({
             <div className="flex-1 grid grid-cols-1 lg:grid-cols-3 gap-4 overflow-hidden">
                 {/* Left Panel - Input Configuration */}
                 <Card className="lg:col-span-1 bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 flex flex-col overflow-hidden">
-                    <CardHeader className="pb-3">
+                    <CardHeader className="pb-3 shrink-0">
                         <CardTitle className="text-cyan-600 dark:text-cyan-400 flex items-center gap-2">
                             <div>⚙️</div>
                             Configuración
                         </CardTitle>
                     </CardHeader>
-                    <CardContent className="space-y-4 flex-1 overflow-y-auto">
+                    <CardContent className="space-y-4 overflow-y-auto overflow-x-hidden flex-1">
                         {inputConfig}
                     </CardContent>
-                    <div className="px-6 pb-6 mt-auto border-t border-slate-200 dark:border-slate-700 pt-4">
+                    <div className="px-6 pb-6 border-t border-slate-200 dark:border-slate-700 pt-4 shrink-0">
                         <div className="flex gap-2">
                             <Button
                                 onClick={handleExecute}
@@ -148,69 +150,74 @@ export function AlgorithmVisualization({
                     </div>
                 </Card>
 
-                {/* Right Panel - Output */}
-                <Card className="lg:col-span-2 bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 flex flex-col overflow-hidden">
-                    <CardHeader className="pb-3">
-                        <CardTitle className="text-cyan-600 dark:text-cyan-400 flex items-center gap-2">
-                            <div>📋</div>
-                            Ejecución Paso a Paso
-                        </CardTitle>
-                    </CardHeader>
-                    <CardContent className="flex-1 overflow-hidden p-0">
-                        {!showOutput ? (
-                            <div className="text-center h-full flex items-center justify-center text-slate-400 dark:text-slate-400">
-                                <p className="text-lg">Haz clic en {`"Ejecutar"`} para ver el seguimiento</p>
-                            </div>
-                        ) : (
-                            <div className="space-y-2 overflow-y-auto h-full px-6 py-4">
-                                {steps.map((step, index) => (
-                                    <div
-                                        key={index}
-                                        className={`border rounded-lg ${getStepColor(step)} border-opacity-50`}
-                                    >
-                                        <button
-                                            onClick={() => toggleStepExpand(index)}
-                                            className="w-full px-4 py-2 flex items-center justify-between hover:bg-opacity-20 transition-colors"
+                {/* Right Panel - Output and Result Combined */}
+                <div className="lg:col-span-2 flex flex-col gap-4 overflow-hidden">
+                    {/* Output */}
+                    <Card className="flex-1 bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 flex flex-col overflow-hidden">
+                        <CardHeader className="pb-3">
+                            <CardTitle className="text-cyan-600 dark:text-cyan-400 flex items-center gap-2">
+                                <div>📋</div>
+                                Ejecución Paso a Paso
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent className="flex-1 overflow-hidden p-0">
+                            {!showOutput ? (
+                                <div className="text-center h-full flex items-center justify-center text-slate-400 dark:text-slate-400">
+                                    <p className="text-lg">Haz clic en {`"Ejecutar"`} para ver el seguimiento</p>
+                                </div>
+                            ) : (
+                                <div className="space-y-2 overflow-y-auto h-full px-6 py-4">
+                                    {steps.map((step, index) => (
+                                        <div
+                                            key={index}
+                                            className={`border rounded-lg ${getStepColor(step)} border-opacity-50`}
                                         >
-                                            <div className="text-left">
-                                                <span className="font-mono text-sm font-semibold">
-                                                    {getStepLabel(step)}
-                                                </span>
-                                                {step.highlight && (
-                                                    <span className="ml-2 text-xs opacity-75">({step.highlight})</span>
+                                            <button
+                                                onClick={() => toggleStepExpand(index)}
+                                                className="w-full px-4 py-2 flex items-center justify-between hover:bg-opacity-20 transition-colors"
+                                            >
+                                                <div className="text-left">
+                                                    <span className="font-mono text-sm font-semibold">
+                                                        {getStepLabel(step)}
+                                                    </span>
+                                                    {step.highlight && (
+                                                        <span className="ml-2 text-xs opacity-75">({step.highlight})</span>
+                                                    )}
+                                                </div>
+                                                {expandedSteps.includes(index) ? (
+                                                    <ChevronUp className="h-4 w-4" />
+                                                ) : (
+                                                    <ChevronDown className="h-4 w-4" />
                                                 )}
-                                            </div>
-                                            {expandedSteps.includes(index) ? (
-                                                <ChevronUp className="h-4 w-4" />
-                                            ) : (
-                                                <ChevronDown className="h-4 w-4" />
+                                            </button>
+
+                                            {expandedSteps.includes(index) && (
+                                                <div className="px-4 pb-2 border-t border-current border-opacity-30">
+                                                    <pre className="text-xs font-mono whitespace-pre-wrap break-words text-slate-300 bg-slate-900 rounded p-2 mt-2">
+                                                        {step.content}
+                                                    </pre>
+                                                </div>
                                             )}
-                                        </button>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </CardContent>
+                    </Card>
 
-                                        {expandedSteps.includes(index) && (
-                                            <div className="px-4 pb-2 border-t border-current border-opacity-30">
-                                                <pre className="text-xs font-mono whitespace-pre-wrap break-words text-slate-300 bg-slate-900 rounded p-2 mt-2">
-                                                    {step.content}
-                                                </pre>
-                                            </div>
-                                        )}
-                                    </div>
-                                ))}
-                            </div>
-                        )}
-                    </CardContent>
-                </Card>
+                    {/* Result Panel */}
+                    {showOutput && steps.length > 0 && (
+                        <Card className="bg-gradient-to-r from-green-900/30 to-blue-900/30 border-green-700 flex flex-col">
+                            <CardHeader className="pb-3 shrink-0">
+                                <CardTitle className="text-green-400 text-sm">✓ Resultado Final</CardTitle>
+                            </CardHeader>
+                            <CardContent className="text-sm pt-0">
+                                {renderResult()}
+                            </CardContent>
+                        </Card>
+                    )}
+                </div>
             </div>
-
-            {/* Result Panel - Full Width */}
-            {showOutput && steps.length > 0 && (
-                <Card className="bg-gradient-to-r from-green-900/30 to-blue-900/30 border-green-700 h-32">
-                    <CardHeader className="pb-2">
-                        <CardTitle className="text-green-400 text-sm">✓ Resultado Final</CardTitle>
-                    </CardHeader>
-                    <CardContent className="overflow-y-auto text-sm">{result}</CardContent>
-                </Card>
-            )}
         </div>
     )
 }

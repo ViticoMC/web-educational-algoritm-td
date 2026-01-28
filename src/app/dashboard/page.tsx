@@ -20,7 +20,7 @@ export default function Dashboard() {
             {/* Header */}
             <div className="mb-12">
                 <h1 className="text-4xl font-bold text-slate-900 dark:text-white mb-2">Bienvenido de nuevo, Estudiante</h1>
-                <p className="text-slate-600 dark:text-slate-400">Tu mejor opcion , para estudiar SBD-1</p>
+                <p className="text-slate-600 dark:text-slate-400">Tu mejor opción para estudiar Sistemas de Bases de Datos</p>
             </div>
 
             {/* Stats Grid */}
@@ -104,7 +104,7 @@ export default function Dashboard() {
                             <TrendingUp className="h-6 w-6" />
                             <h2 className="text-xl font-bold">Inicio Rápido de Algoritmos</h2>
                         </div>
-                        <p className="text-blue-100 mb-6">¿Listo para sintetizar o descomponer? Salta directamente a la suite.</p>
+                        <p className="text-blue-100 mb-6">¿Listo para sintetizar o descomponer? Accede a la suite de algoritmos.</p>
 
                         <Button
                             asChild

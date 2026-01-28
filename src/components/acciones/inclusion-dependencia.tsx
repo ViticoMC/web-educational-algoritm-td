@@ -170,7 +170,7 @@ export default function InclusionDependencia({ relaciones }: { relaciones: Relac
         </div>
     )
 
-    const resultDisplay = (
+    const resultDisplay = () => (
         <div className={`p-4 rounded border-2 ${result === true ? 'bg-green-100 dark:bg-green-900 border-green-400 dark:border-green-600' : result === false ? 'bg-red-100 dark:bg-red-900 border-red-400 dark:border-red-600' : 'bg-slate-100 dark:bg-slate-700 border-slate-200 dark:border-slate-600'}`}>
             <p className={`text-lg font-semibold ${result === true ? 'text-green-700 dark:text-green-300' : result === false ? 'text-red-700 dark:text-red-300' : 'text-slate-700 dark:text-white'}`}>
                 {result === true ? '✓ La dependencia ESTÁ incluida' : result === false ? '✗ La dependencia NO está incluida' : 'Resultado pendiente'}
@@ -184,7 +184,7 @@ export default function InclusionDependencia({ relaciones }: { relaciones: Relac
             description="Verifica si una dependencia funcional está incluida en un conjunto de FDs"
             inputConfig={inputConfig}
             onExecute={handleExecuteAlgorithm}
-            result={resultDisplay}
+            renderResult={resultDisplay}
         />
     )
 }

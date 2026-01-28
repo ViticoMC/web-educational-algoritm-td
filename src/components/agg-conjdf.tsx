@@ -1,5 +1,5 @@
 "use client"
-import { ArrowRight, } from "lucide-react";
+import { ArrowRight, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { useState } from "react";
@@ -190,15 +190,27 @@ export default function AggDF({ atributos, id, refetch, conjuntosDF }: { atribut
 
                         {
                             conjuntoDF.df.length > 0 && conjuntoDF.df.map((item, index) => (
-                                <CardContent key={index} className="flex items-end justify-center gap-2 m-2">
-                                    <div>
-                                        {formatAtri(item.implicantes)}
+                                <CardContent key={index} className="flex items-end justify-between gap-2 m-2 p-3 bg-slate-100 dark:bg-slate-700 rounded">
+                                    <div className="flex items-center gap-2">
+                                        <div>
+                                            {formatAtri(item.implicantes)}
+                                        </div>
+                                        <ArrowRight className="h-5 w-5" />
+                                        <div>
+                                            {formatAtri(item.implicados)}
+                                        </div>
                                     </div>
-                                    <ArrowRight className="h-5 w-5" />
-                                    <div>
-                                        {formatAtri(item.implicados)}
-                                    </div>
-
+                                    <button
+                                        onClick={() => {
+                                            setConjuntoDF((prev) => ({
+                                                ...prev,
+                                                df: prev.df.filter((_, i) => i !== index)
+                                            }))
+                                        }}
+                                        className="hover:opacity-70 transition-opacity"
+                                    >
+                                        <X className="h-4 w-4 text-red-500" />
+                                    </button>
                                 </CardContent>
                             ))
                         }

@@ -14,7 +14,7 @@ export function LayoutClient({ children }: { children: React.ReactNode }) {
                 {/* Toggle button */}
                 <button
                     onClick={() => setNavOpen(!navOpen)}
-                    className={`fixed top-4 ${navOpen ? "left-52" : "left-4"}  duration-300 z-50 p-2 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-md`}
+                    className={`fixed top-4 ${navOpen ? "left-50" : "left-4"}  duration-300 z-50 p-2 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-md`}
                     aria-label={navOpen ? "Cerrar navegación" : "Abrir navegación"}
                 >
                     {navOpen ? (

@@ -177,7 +177,7 @@ export default function Equivalencia({ relaciones }: { relaciones: Relacion[] })
         </div>
     )
 
-    const resultDisplay = (
+    const resultDisplay = () => (
         <div className={`p-4 rounded border-2 ${result === true ? 'bg-green-900 border-green-600' : result === false ? 'bg-red-900 border-red-600' : 'bg-slate-700 border-slate-600'}`}>
             <p className="text-lg font-semibold text-white">
                 {result === true ? '✓ Los conjuntos son EQUIVALENTES' : result === false ? '✗ Los conjuntos NO son equivalentes' : 'Resultado pendiente'}
@@ -191,7 +191,7 @@ export default function Equivalencia({ relaciones }: { relaciones: Relacion[] })
             description="Verifica si dos conjuntos de dependencias funcionales son equivalentes"
             inputConfig={inputConfig}
             onExecute={handleExecuteAlgorithm}
-            result={resultDisplay}
+            renderResult={resultDisplay}
         />
     )
 }

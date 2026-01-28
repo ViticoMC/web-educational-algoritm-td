@@ -31,7 +31,7 @@ export default function Relaciones() {
         <Tabs className="flex flex-col lg:flex-row h-auto w-full items-start overflow-y-auto gap-6"
             onValueChange={(e) => setTabId(Number(e))}
         >
-            <Card className="flex flex-col p-6 items-start overflow-y-auto h-auto w-full lg:w-80 overflow-x-hidden bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700">
+            <Card className="flex flex-col p-6 items-center overflow-y-auto h-auto w-full lg:w-80 overflow-x-hidden bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700">
                 <div className="w-full mb-6">
                     <CardTitle className="text-2xl flex items-center gap-3 mb-1 text-slate-900 dark:text-white">
                         <Database className="h-7 w-7 text-blue-400" />
@@ -62,9 +62,7 @@ export default function Relaciones() {
             <Card className="p-6 flex-1 bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700">
                 {
                     tabId !== 0 ?
-                        relaciones.map((item) => (
-                            <ConjuntosDF key={item.id} relacion={item} />
-                        ))
+                        relaciones.find((item) => item.id === tabId) && <ConjuntosDF relacion={relaciones.find((item) => item.id === tabId)!} />
 
                         : (
                             <CardContent className="text-center flex flex-col gap-2 text-xl min-h-96 flex items-center justify-center">

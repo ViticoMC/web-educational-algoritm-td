@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "DB Theory Lab - Suite Educativa",
-  description: "Analiza dependencias funcionales y normaliza relaciones a 3NF o BCNF utilizando la Suite de Algoritmos",
+  title: "Teoría de Bases de Datos - Laboratorio Educativo",
+  description: "Analiza dependencias funcionales y normaliza relaciones a 3NF o BCNF utilizando la suite de algoritmos educativa",
   keywords: [
     "Base de Datos", "Teoría del Diseño", "Dependencias Funcionales", "Clausura", "Normalización", "3NF", "BCNF", "Relaciones"
   ]

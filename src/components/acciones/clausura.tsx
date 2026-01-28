@@ -218,7 +218,7 @@ export default function Clausura({ relaciones }: { relaciones: Relacion[] }) {
         </div>
     )
 
-    const resultDisplay = (
+    const resultDisplay = () => (
         <div className="space-y-3">
             <div className="p-4 bg-green-100 dark:bg-slate-700 rounded border border-green-400 dark:border-green-600">
                 <p className="text-sm text-green-700 dark:text-slate-300 mb-2">Clausura de {selectedAtributos.join(', ')}:</p>
@@ -247,7 +247,7 @@ export default function Clausura({ relaciones }: { relaciones: Relacion[] }) {
             description="Calcula X⁺ iterativamente aplicando FDs hasta convergencia"
             inputConfig={inputConfig}
             onExecute={handleExecuteAlgorithm}
-            result={resultDisplay}
+            renderResult={resultDisplay}
         />
     )
 }

@@ -39,7 +39,7 @@ export default function CardConjuntoDf({ item, refetch }: { item: ConjuntoDF | u
                             }}
                         >
                             <Trash className="h-4 w-4 mr-2" />
-                            Delete Set
+                            Borrar Conjunto
                         </Button>
                     </div> : null
             }

@@ -256,7 +256,7 @@ export default function ClaveCandidata({ relaciones }: { relaciones: Relacion[] 
         </div>
     )
 
-    const resultDisplay = (
+    const resultDisplay = () => (
         <div className={`p-4 rounded border-2 ${result === true ? 'bg-green-900 border-green-600' : result === false ? 'bg-red-900 border-red-600' : 'bg-slate-700 border-slate-600'}`}>
             <p className="text-lg font-semibold text-white mb-2">
                 {result === true ? '✓ ES clave candidata' : result === false ? '✗ NO es clave candidata' : 'Resultado pendiente'}
@@ -273,7 +273,7 @@ export default function ClaveCandidata({ relaciones }: { relaciones: Relacion[] 
             description="Verifica si un conjunto de atributos es una clave candidata"
             inputConfig={inputConfig}
             onExecute={handleExecuteAlgorithm}
-            result={resultDisplay}
+            renderResult={resultDisplay}
         />
     )
 }

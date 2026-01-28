@@ -64,7 +64,7 @@ export function AggRelacion({ refetch }:
         }}>
             <form>
                 <DialogTrigger asChild>
-                    <Button className="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white">
+                    <Button className="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white justify-center">
                         <Plus className="h-4 w-4 mr-2" />
                         Nueva Relación
                     </Button>
@@ -88,7 +88,13 @@ export function AggRelacion({ refetch }:
                             />
                         </div>
                         <div className="flex flex-col gap-3">
-                            <form className="flex items-end gap-3">
+                            <form className="flex items-end gap-3" onSubmit={(e) => {
+                                e.preventDefault()
+                                if (currAtr) {
+                                    setCurrAtr("")
+                                    setFormRelacion({ ...formRelacion, atributos: [...formRelacion.atributos, currAtr] })
+                                }
+                            }}>
                                 <div className="flex flex-col gap-2 flex-1">
                                     <Label htmlFor="atr" className="text-slate-900 dark:text-white">Atributo</Label>
                                     <Input
@@ -100,12 +106,7 @@ export function AggRelacion({ refetch }:
                                     />
                                 </div>
                                 <Button
-                                    type="button"
-                                    onClick={(e) => {
-                                        e.preventDefault()
-                                        setCurrAtr("")
-                                        setFormRelacion({ ...formRelacion, atributos: [...formRelacion.atributos, currAtr] })
-                                    }}
+                                    type="submit"
                                     disabled={loading || !currAtr}
                                     className="bg-slate-300 dark:bg-slate-700 hover:bg-slate-400 dark:hover:bg-slate-600"
                                 >

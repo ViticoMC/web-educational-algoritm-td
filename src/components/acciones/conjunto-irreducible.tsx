@@ -41,6 +41,10 @@ export default function ConjuntoIrreducible({
     async function handleExecuteAlgorithm(): Promise<ExecutionStep[]> {
         if (!selectedConjuntoDf?.df) return []
 
+        // Resetear estados
+        setResult(null)
+        setIrreducible(undefined)
+
         const steps: ExecutionStep[] = []
         const dfs = selectedConjuntoDf.df as DF[]
 
@@ -177,21 +181,38 @@ export default function ConjuntoIrreducible({
         </div>
     )
 
-    const resultDisplay = (
-        <div className="space-y-3">
-            <div className={`p-4 rounded border-2 ${result === true ? 'bg-green-900 border-green-600' : result === false ? 'bg-red-900 border-red-600' : 'bg-slate-700 border-slate-600'}`}>
-                <p className="text-lg font-semibold text-white">
-                    {result === true ? '✓ El conjunto ES irreducible' : result === false ? '✗ El conjunto NO es irreducible' : 'Resultado pendiente'}
-                </p>
-            </div>
-            {result === false && irreducible && (
-                <div>
-                    <p className="text-green-400 text-sm font-semibold mb-2">Versión irreducible del conjunto:</p>
-                    <CardConjuntoDf item={irreducible} />
+    const resultDisplay = () => {
+        console.log("Rendering result - result:", result, "irreducible:", irreducible)
+        return (
+            <div className="space-y-3">
+                <div className={`p-4 rounded border-2 ${result === true ? 'bg-green-900 border-green-600' : result === false ? 'bg-red-900 border-red-600' : 'bg-slate-700 border-slate-600'}`}>
+                    <p className="text-lg font-semibold text-white">
+                        {result === true ? '✓ El conjunto ES irreducible' : result === false ? '✗ El conjunto NO es irreducible' : 'Resultado pendiente'}
+                    </p>
                 </div>
-            )}
-        </div>
-    )
+                {result === false && irreducible?.df && Array.isArray(irreducible.df) && irreducible.df.length > 0 && (
+                    <div className="p-3 bg-slate-100 dark:bg-slate-700 rounded border border-slate-200 dark:border-slate-600">
+                        <p className="text-green-600 dark:text-green-400 text-sm font-semibold mb-2">Versión irreducible del conjunto:</p>
+                        <div className="space-y-1">
+                            {(irreducible.df as DF[]).map((df, idx) => (
+                                <div key={idx} className="text-xs font-mono text-cyan-600 dark:text-cyan-300">
+                                    {(df.implicantes as string[]).join(', ')} → {(df.implicados as string[]).join(', ')}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )}
+                {result === false && irreducible?.df && (!Array.isArray(irreducible.df) || irreducible.df.length === 0) && (
+                    <div className="p-3 bg-amber-100 dark:bg-amber-900/30 rounded border border-amber-400 dark:border-amber-600">
+                        <p className="text-amber-700 dark:text-amber-400 text-sm font-semibold mb-2">⚠ Advertencia:</p>
+                        <p className="text-xs text-amber-600 dark:text-amber-300">
+                            La función getIrreducible() devolvió un conjunto vacío. Esto podría indicar un problema en la implementación del algoritmo.
+                        </p>
+                    </div>
+                )}
+            </div>
+        )
+    }
 
     return (
         <AlgorithmVisualization
@@ -199,7 +220,7 @@ export default function ConjuntoIrreducible({
             description="Verifica si un conjunto de dependencias funcionales es irreducible"
             inputConfig={inputConfig}
             onExecute={handleExecuteAlgorithm}
-            result={resultDisplay}
+            renderResult={resultDisplay}
         />
     )
 }

@@ -15,20 +15,34 @@ export function getIrreducible(F: DF[]) {
       result.push({ implicantes: dp.implicantes, implicados: dp.implicados });
     }
   }
-  // step two buscar redundancias
+
+  // step two buscar redundancias - usar result en lugar de F
   for (let i = 0; i < result.length; i++) {
-    result[i] = searchRedundancias(F, result[i]);
+    result[i] = searchRedundancias(result, result[i]);
   }
 
-  // step trhe buscar df innecesarias
+  // step three buscar df innecesarias
+  const toRemove: number[] = [];
   for (let i = 0; i < result.length; i++) {
-    const restSubConj = result.filter((_, j) => j !== i);
-    if (sonEquivalentes(result, restSubConj)) {
-      result.splice(i, 1);
+    if (toRemove.includes(i)) continue;
+
+    const restSubConj = result.filter(
+      (_, j) => j !== i && !toRemove.includes(j),
+    );
+
+    // Verificar si el conjunto sin esta DF es equivalente al conjunto completo
+    // Solo marcar para remover si son equivalentes
+    const currentWithout = result.filter((_, j) => !toRemove.includes(j));
+    if (sonEquivalentes(currentWithout, restSubConj)) {
+      toRemove.push(i);
     }
   }
 
-  return result;
+  // Eliminar las dependencias marcadas como innecesarias
+  const finalResult = result.filter((_, i) => !toRemove.includes(i));
+
+  // Si el resultado está vacío, devolver al menos el resultado del paso 2
+  return finalResult.length > 0 ? finalResult : result;
 }
 
 function searchRedundancias(F: DF[], f: DF) {
